@@ -1,0 +1,16 @@
+{
+  "name": "SE 441 Professional Ethics Slides",
+  "short_name": "SE441 Ethics",
+  "description": "Interactive slides on software engineering professional ethics.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f1ebdd",
+  "theme_color": "#1d1c18",
+  "icons": [
+    {"src": "android-chrome-192x192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "android-chrome-512x512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}
