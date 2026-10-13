@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="SE 441 Professional Ethics: animated banner">
+<title>SE 441 Professional Ethics</title>
+<style>.lg-beam{transform-origin:60px 35px;animation:lgTilt 6s ease-in-out infinite}
+.lg-pan{animation:lgUn 6s ease-in-out infinite}
+@keyframes lgTilt{0%{transform:rotate(-13deg)}12%{transform:rotate(9deg)}24%{transform:rotate(-5deg)}34%{transform:rotate(3deg)}44%{transform:rotate(-1.4deg)}52%,86%{transform:rotate(0)}100%{transform:rotate(-13deg)}}
+@keyframes lgUn{0%{transform:rotate(13deg)}12%{transform:rotate(-9deg)}24%{transform:rotate(5deg)}34%{transform:rotate(-3deg)}44%{transform:rotate(1.4deg)}52%,86%{transform:rotate(0)}100%{transform:rotate(13deg)}}
+.stamp{transform-origin:1110px 84px;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sub{opacity:0;animation:subin 9s ease infinite}
+@keyframes subin{0%,30%{opacity:0;transform:translateY(8px)}42%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+</style>
+<defs>
+<pattern id="rule" width="20" height="36" patternUnits="userSpaceOnUse"><rect y="35" width="20" height="1" fill="#1d1c18" opacity=".10"/></pattern>
+<clipPath id="tc"><rect x="326" y="120" height="90" width="0"><animate attributeName="width" values="0;730;730;0" keyTimes="0;.38;.9;1" dur="9s" repeatCount="indefinite"/></rect></clipPath>
+</defs>
+<rect width="1200" height="300" fill="#f1ebdd"/>
+<rect width="1200" height="300" fill="url(#rule)"/>
+<rect x="44" width="2" height="300" fill="#b5391f" opacity=".45"/>
+<g transform="translate(78,48) scale(1.7)"><rect width="120" height="120" rx="26" fill="#1d1c18"/>
+  <rect x="57" y="35" width="6" height="55" fill="#f1ebdd"/>
+  <rect x="34" y="88" width="52" height="7" rx="3.5" fill="#f1ebdd"/>
+  <g class="lg-beam">
+    <rect x="16" y="32" width="88" height="6" rx="3" fill="#f1ebdd"/>
+    <g class="lg-pan" style="transform-origin:24px 38px">
+      <path d="M24 38 L12 64 M24 38 L36 64" stroke="#f1ebdd" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M9 64 H39 A15 11 0 0 1 9 64 Z" fill="#f1ebdd"/>
+      <rect x="18" y="52" width="12" height="12" rx="1.5" fill="#e8603f"/>
+    </g>
+    <g class="lg-pan" style="transform-origin:96px 38px">
+      <path d="M96 38 L84 64 M96 38 L108 64" stroke="#f1ebdd" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M81 64 H111 A15 11 0 0 1 81 64 Z" fill="#f1ebdd"/>
+      <circle cx="96" cy="57" r="7" fill="#4cb5aa"/>
+    </g>
+  </g>
+  <circle cx="60" cy="35" r="4.5" fill="#e0a526"/></g>
+<text x="330" y="102" font-family="'JetBrains Mono',ui-monospace,'DejaVu Sans Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" letter-spacing="2" fill="#b5391f">SE 441  ·  FALL 2026</text>
+<g clip-path="url(#tc)"><text x="330" y="190" font-family="Georgia,'DejaVu Serif','Times New Roman',serif" font-size="64" font-weight="700" fill="#1d1c18" textLength="720" lengthAdjust="spacingAndGlyphs">Professional Ethics</text></g>
+<rect y="128" width="6" height="74" fill="#b5391f"><animate attributeName="x" values="326;1050;1050;326" keyTimes="0;.38;.9;1" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+<rect x="330" y="212" height="5" fill="#b5391f" width="0"><animate attributeName="width" values="0;140;140;0" keyTimes="0;.45;.9;1" dur="9s" repeatCount="indefinite"/></rect>
+<text class="sub" x="330" y="256" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'DejaVu Sans',Arial,sans-serif" font-size="24" fill="#6a6455">Interactive slides for software engineers  ·  বাংলা × English</text>
+<g class="stamp"><circle cx="1110" cy="84" r="52" fill="none" stroke="#b5391f" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/></g>
+<circle cx="1110" cy="84" r="40" fill="none" stroke="#b5391f" stroke-width="2"/>
+<text x="1110" y="94" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,'DejaVu Sans Mono',Menlo,Consolas,monospace" font-size="28" font-weight="700" fill="#b5391f">441</text>
+</svg>
