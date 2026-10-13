@@ -15,9 +15,8 @@
 </p>
 
 <p align="center">
-  <b>32 interactive slides that teach software-engineering ethics from zero.</b><br>
-  Explanations in Bangla, key terms and worked answers in English.<br>
-  One <code>index.html</code>. No framework. No build. Open it and press <kbd>→</kbd>.
+  <b>A study hub for software-engineering ethics: interactive slides, videos, notes and the lecturer's decks in one dashboard.</b><br>
+  Bangla explanations, English answers. No framework. No build step.
 </p>
 
 <p align="center">
@@ -28,6 +27,7 @@
 
 ## Contents
 
+- [The hub](#the-hub)
 - [What is this?](#what-is-this)
 - [See it move](#see-it-move)
 - [The four lenses](#the-four-lenses)
@@ -42,6 +42,20 @@
 
 <img src="assets/divider.svg" alt="" width="100%">
 
+## The hub
+
+The front page is a dashboard over a WebGL planet scene. Everything on it comes from [`data/library.js`](data/library.js).
+
+| Tile | What it holds |
+|---|---|
+| **Slides** | Interactive decks. The 32-slide *Ethics from Zero* deck is the first; more can be added. |
+| **Videos** | YouTube videos that play in a pop-up on the page. |
+| **Notes** | Lesson-note PDFs, readable in the page or downloadable. |
+| **Sir's Slides** | The lecturer's own PDFs. |
+| **Practice, Past Questions** | Placeholders marked "soon". |
+
+Search with <kbd>/</kbd>. The **Effects** button turns the 3D scene off. To add a video, note or deck, follow **[GUIDE.md](GUIDE.md)**.
+
 ## What is this?
 
 A study deck for a university course in **software engineering professional ethics**. It starts with the question "what is ethics?" and builds up to ethical frameworks, computer ethics, relevant laws, professional codes (ACM and IEEE) and a worked case study.
@@ -52,7 +66,7 @@ It is written for someone who has never studied the subject. Every idea arrives 
 |---|---|
 | **Looks like** | A ruled notebook: paper, ink, one red margin line. No gradients, no glow. |
 | **Feels like** | Slides with staggered reveals, flows, a playable trolley problem and flip-cards. |
-| **Runs as** | A single static file. Works offline once fonts are cached, and on a phone with swipe. |
+| **Runs as** | A static file (the deck is `decks/ethics/index.html`). Works offline once fonts are cached, and on a phone with swipe. |
 
 ## See it move
 
@@ -116,25 +130,26 @@ The stage is a fixed 1280 x 720 canvas that scales to any window, so layouts sta
 ```bash
 git clone https://github.com/USERNAME/REPO.git
 cd REPO
-open index.html            # or double-click it
+open index.html            # or double-click it (YouTube needs the server below)
 # or serve it locally
 python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
 ## Deploy to GitHub Pages
 
-1. Create a repository and push these files to the `main` branch (the root of the repo, not a subfolder).
+1. Create a repository and push these files to the `main` branch (the root of the repo, not a subfolder). Read the copyright note in [GUIDE.md](GUIDE.md#before-you-make-the-repo-public) first, because `files/` holds third-party PDFs.
 2. Open **Settings → Pages**.
 3. Under **Build and deployment**, choose **Deploy from a branch**, then pick `main` and `/ (root)`, and save.
 4. After a minute your site is live at `https://USERNAME.github.io/REPO/`.
-5. Open `index.html` and change the `og:image` meta tag to the absolute URL, for example `https://USERNAME.github.io/REPO/og-image.png`, so link previews show the card.
+5. Open `index.html` and `decks/ethics/index.html` and change the `og:image` meta tag to the absolute URL, for example `https://USERNAME.github.io/REPO/og-image.png`, so link previews show the card.
 
 `.nojekyll` is included so GitHub serves the files exactly as they are.
 
 ## Customise
 
-- **Colours** live in the `:root` block at the top of the `<style>` in `index.html` (`--paper`, `--ink`, `--r` red, `--t` teal, `--g` green, `--a` ochre).
-- **Slides** are `<section class="slide">` blocks. Add the class `r` to anything that should reveal itself; order is automatic, or set `style="--i:3"` to control it.
+- **Hub content**: edit `data/library.js` (see the guide).
+- **Deck colours** live in the `:root` block at the top of the `<style>` in `decks/ethics/index.html` (`--paper`, `--ink`, `--r` red, `--t` teal, `--g` green, `--a` ochre).
+- **Deck slides** are `<section class="slide">` blocks. Add the class `r` to anything that should reveal itself; order is automatic, or set `style="--i:3"` to control it.
 - **Entrance direction**: add `l`, `rt`, `z` or `d` next to `r` (from left, from right, zoom, from top).
 - **Quiz questions** are the `Q` array near the end of the script.
 - **Logo and icons**: `favicon.svg` is the master. The PNG and ICO files were rendered from the same geometry.
@@ -143,7 +158,15 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 
 ```text
 .
-├── index.html                  the whole deck (HTML + CSS + JS)
+├── index.html                  the hub (dashboard + planet scene)
+├── GUIDE.md                    how to add videos, notes, decks
+├── data/
+│   └── library.js              everything the hub lists
+├── decks/
+│   └── ethics/index.html       the 32-slide deck
+├── files/
+│   ├── notes/                  lesson-note PDFs
+│   └── sirs-slides/            lecturer PDFs
 ├── 404.html                    friendly not-found page
 ├── favicon.ico                 16, 32, 48, 64 px
 ├── favicon.svg                 vector favicon
@@ -186,7 +209,7 @@ This is an **unofficial study aid** written by a student. It summarises lecture 
 
 Code and design: [MIT](LICENSE). The study text is shared for learning; please credit the repository if you reuse it.
 
-Fonts are loaded from Google Fonts under the SIL Open Font License: [Fraunces](https://fonts.google.com/specimen/Fraunces), [Hind Siliguri](https://fonts.google.com/specimen/Hind+Siliguri) and [JetBrains Mono](https://www.jetbrains.com/lp/mono/).
+The hub planet scene uses [three.js](https://threejs.org) and [Lenis](https://github.com/darkroomengineering/lenis) (both MIT), loaded from CDNs. Fonts are loaded from Google Fonts under the SIL Open Font License: [Inter](https://fonts.google.com/specimen/Inter), [Fraunces](https://fonts.google.com/specimen/Fraunces), [Hind Siliguri](https://fonts.google.com/specimen/Hind+Siliguri) and [JetBrains Mono](https://www.jetbrains.com/lp/mono/).
 
 <img src="assets/divider.svg" alt="" width="100%">
 
