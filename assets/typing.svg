@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 64" width="1000" height="64" role="img" aria-label="Rotating taglines">
+<style>.ln{font-family:'JetBrains Mono',ui-monospace,'DejaVu Sans Mono',Menlo,Consolas,monospace;font-size:26px;font-weight:600;fill:#1d1c18;opacity:0;animation:show 12s infinite}
+@keyframes show{0%{opacity:0;transform:translateY(12px)}4%{opacity:1;transform:none}21%{opacity:1;transform:none}25%{opacity:0;transform:translateY(-12px)}100%{opacity:0}}
+.cur{animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}</style>
+<rect x="1.5" y="1.5" width="997" height="61" rx="8" fill="#f1ebdd" stroke="#1d1c18" stroke-width="2"/>
+<text class="ln" style="animation-delay:0s" x="32" y="42"><tspan fill="#b5391f">› </tspan>Learn ethics from absolute zero.</text><text class="ln" style="animation-delay:3s" x="32" y="42"><tspan fill="#b5391f">› </tspan>Trolley problem: play it, don't just read it.</text><text class="ln" style="animation-delay:6s" x="32" y="42"><tspan fill="#b5391f">› </tspan>Deontology vs Utilitarianism, side by side.</text><text class="ln" style="animation-delay:9s" x="32" y="42"><tspan fill="#b5391f">› </tspan>Keyboard-driven slides. No build step.</text>
+<rect class="cur" x="960" y="18" width="10" height="28" fill="#b5391f"/>
+</svg>
