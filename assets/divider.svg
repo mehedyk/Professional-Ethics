@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 28" width="1200" height="28" role="img" aria-label="divider">
+<defs><pattern id="t" width="12" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="16" width="1.5" height="10" fill="#1d1c18" opacity=".55"/></pattern></defs>
+<rect width="1200" height="28" fill="#f1ebdd"/><rect width="1200" height="28" fill="url(#t)"/><rect y="25" width="1200" height="2" fill="#1d1c18"/>
+<polygon points="0,2 14,2 7,16" fill="#b5391f"><animateTransform attributeName="transform" type="translate" values="0 0;1186 0;0 0" keyTimes="0;.5;1" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines=".5 0 .2 1;.5 0 .2 1"/></polygon>
+</svg>
