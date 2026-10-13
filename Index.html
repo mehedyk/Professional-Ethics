@@ -1,799 +1,1136 @@
 <!doctype html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SE 441 · Professional Ethics Slides</title>
-<meta name="description" content="Interactive slides on software engineering professional ethics: ethical frameworks, computer ethics, laws and a worked case study. Bangla and English.">
-<meta name="theme-color" content="#1d1c18">
+<title>SE 441 Study Hub · Software Engineering Professional Ethics</title>
+<meta name="description" content="A study hub for SE 441: interactive slides, videos, lesson notes and the lecturer's slides in one place. Bangla and English.">
+<meta name="theme-color" content="#04060f">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="mask-icon" href="safari-pinned-tab.svg" color="#b5391f">
+<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5df0a8">
 <link rel="manifest" href="site.webmanifest">
 <meta name="msapplication-config" content="browserconfig.xml">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SE 441 · Professional Ethics Slides">
-<meta property="og:description" content="Frameworks, computer ethics, laws and a case study, as keyboard-driven interactive slides.">
+<meta property="og:title" content="SE 441 Study Hub">
+<meta property="og:description" content="Slides, videos, notes and lecturer decks for software engineering professional ethics.">
 <!-- After deploying, change this to the absolute URL, e.g. https://USER.github.io/REPO/og-image.png -->
 <meta property="og:image" content="og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.143.0/build/three.module.js",
+  "three/examples/jsm/": "https://unpkg.com/three@0.143.0/examples/jsm/"
+}}
+</script>
+
 <style>
-:root{--paper:#f1ebdd;--paper2:#e6dec9;--bg:#f1ebdd;--card:#f8f4ea;--ink:#1d1c18;--tx:#1d1c18;--mu:#6a6455;--ln:rgba(29,28,24,.8);--lnl:rgba(29,28,24,.16);--p:#f8f4ea;--p2:#e8e0cb;
-  --a:#8f5f00;--ah:rgba(232,184,48,.40);--t:#1b6560;--r:#b5391f;--g:#3b6b2a}
+:root{
+  --bg:#04060f; --bg-2:#060a18; --ink:#f3f6ff; --muted:#9aa6c4; --muted-2:#6b7796;
+  --line:rgba(150,175,230,.12); --line-strong:rgba(150,175,230,.22);
+  --accent:#5df0a8; --accent-2:#2fd38a; --accent-ink:#032018;
+  --glass:rgba(12,18,38,.55); --glass-2:rgba(16,24,48,.65);
+  --radius:18px; --radius-lg:26px; --maxw:1180px;
+  --shadow:0 30px 80px -30px rgba(0,0,0,.75);
+  --font:'Inter','Hind Siliguri',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#2a2822;overflow:hidden;font-family:'Hind Siliguri','Noto Sans Bengali','Segoe UI',system-ui,sans-serif;color:var(--tx)}
-#stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;overflow:hidden;border-radius:8px;background:var(--paper)}
-#stage:before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 35px,rgba(29,28,24,.08) 35px,rgba(29,28,24,.08) 36px)}
-#stage:after{content:'';position:absolute;left:44px;top:0;bottom:0;width:2px;background:rgba(181,57,31,.42);pointer-events:none}
-#grain{position:absolute;inset:0;pointer-events:none;z-index:5;opacity:.22;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .11  0 0 0 0 .11  0 0 0 0 .09  0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit}
+/* Lenis */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+/* staggered scroll-reveal */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.7,.2,1),transform .7s cubic-bezier(.22,.7,.2,1);transition-delay:var(--rd,0ms);will-change:opacity,transform}
+[data-reveal].in{opacity:1;transform:none}
+/* fixed WebGL planet behind everything, never grabs pointer/scroll */
+.planet-canvas{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0;pointer-events:none}
+html.fx-off .planet-canvas,html.no-3d .planet-canvas{display:none}
+.page{position:relative;z-index:1}
+.section{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:clamp(80px,12vw,160px) 24px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.section-head{max-width:680px;margin:0 auto clamp(48px,6vw,80px);text-align:center}
+.section-head h2,.cta-card h2{font-size:clamp(30px,4.4vw,50px);font-weight:800;line-height:1.05;letter-spacing:-.02em;text-shadow:0 2px 40px rgba(0,0,0,.6)}
+.section-head p{margin-top:18px;color:var(--muted);font-size:18px;line-height:1.65;text-shadow:0 1px 24px rgba(0,0,0,.55)}
+/* buttons (flat, no gradient fills) */
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:600;padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .25s ease,background .2s ease,border-color .2s ease;white-space:nowrap}
+.btn svg{width:17px;height:17px;flex:none}
+.btn-primary{color:var(--accent-ink);background:var(--accent);box-shadow:0 10px 30px -8px rgba(93,240,168,.55)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 38px -8px rgba(93,240,168,.7)}
+.btn-outline{color:var(--ink);background:rgba(255,255,255,.04);border-color:var(--line-strong);backdrop-filter:blur(10px)}
+.btn-outline:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
+.btn-ghost{color:var(--ink);background:rgba(255,255,255,.05);border-color:var(--line-strong);padding:9px 18px}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-.slide{position:absolute;inset:0;padding:42px 64px 52px;display:flex;flex-direction:column;gap:16px;opacity:0;visibility:hidden;transform:translateX(70px);transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1),visibility 0s .6s;z-index:1}
-.slide.prev{transform:translateX(-70px)}
-.slide.active{opacity:1;visibility:visible;transform:none;transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1),visibility 0s}
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(125% 62% at 50% -10%, rgba(4,6,15,.82) 0%, rgba(4,6,15,.28) 44%, transparent 68%)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;max-width:var(--maxw);margin:0 auto;padding:22px 24px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.14em}
+.brand img{width:30px;height:30px;border-radius:8px;display:block}
+.brand small{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.nav-links{display:flex;gap:30px;font-size:14.5px;color:var(--muted)}
+.nav-links a{transition:color .2s}.nav-links a:hover{color:var(--ink)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.hero-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;padding-top:64px;padding-bottom:24px}
+.hero-title{font-size:clamp(34px,5.2vw,62px);font-weight:800;line-height:1.04;letter-spacing:-.03em;max-width:15ch;text-shadow:0 2px 50px rgba(0,0,0,.55)}
+.hero-title em{font-style:normal;color:var(--accent)}
+.hero-sub{margin-top:24px;max-width:560px;font-size:clamp(16px,2vw,19px);line-height:1.6;color:var(--muted)}
+.hero-bn{margin-top:8px;font-family:'Hind Siliguri',var(--font);font-size:clamp(15px,1.8vw,18px);color:var(--muted-2)}
+.hero-actions{margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-stats{margin-top:30px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:baseline;gap:7px;padding:7px 14px;border-radius:999px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);font-size:13.5px;color:var(--muted)}
+.chip b{font-size:16px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+.dock{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px clamp(28px,5vw,48px)}
+.dock-card{display:flex;flex-direction:column;gap:4px;text-align:left;padding:16px 18px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);cursor:pointer;transition:transform .2s,border-color .2s,background .2s;position:relative}
+.dock-card:hover{transform:translateY(-4px);border-color:var(--accent);background:var(--glass-2)}
+.dock-k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.dock-t{font-size:16px;font-weight:700;line-height:1.3;padding-right:26px}
+.dock-m{font-size:13px;color:var(--muted)}
+.dock-card svg{position:absolute;right:16px;top:16px;width:18px;height:18px;color:var(--muted);transition:transform .2s,color .2s}
+.dock-card:hover svg{transform:translateX(3px);color:var(--accent)}
+.scrollcue{display:flex;justify-content:center;padding-bottom:18px}
+.scrollcue i{display:block;width:22px;height:36px;border:1.5px solid var(--line-strong);border-radius:12px;position:relative}
+.scrollcue i:after{content:'';position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--accent);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
 
-.r{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
-.r.l{transform:translateX(-50px)}.r.rt{transform:translateX(50px)}.r.z{transform:scale(.7)}.r.d{transform:translateY(-30px)}
-.slide.active .r{opacity:1;transform:none;transition-delay:calc(var(--i,0)*110ms + 220ms)}
-.slide:not(.active) .r{transition-delay:0s}
+/* ---------- LIBRARY ---------- */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{position:relative;text-align:left;padding:24px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);cursor:pointer;transition:transform .25s,border-color .25s,background .25s;display:flex;flex-direction:column;gap:10px;min-height:168px}
+.tile:hover:not(:disabled){transform:translateY(-4px);border-color:var(--line-strong);background:var(--glass-2)}
+.tile.active{border-color:var(--accent);background:var(--glass-2)}
+.tile.active:after{content:'';position:absolute;left:24px;right:24px;bottom:-1px;height:3px;border-radius:3px 3px 0 0;background:var(--accent)}
+.tile:disabled{opacity:.5;cursor:not-allowed}
+.t-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;color:var(--accent);background:rgba(93,240,168,.1);border:1px solid rgba(93,240,168,.18)}
+.tile h3{font-size:19px;font-weight:700}
+.tile p{font-size:14.5px;color:var(--muted);line-height:1.5}
+.t-count{position:absolute;top:22px;right:22px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted);padding:3px 10px;border-radius:999px;border:1px solid var(--line-strong)}
+.tile.active .t-count{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
+.panel{margin-top:22px;padding:26px;border-radius:var(--radius-lg);background:var(--glass-2);border:1px solid var(--line-strong);box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+.panel-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.panel-head h3{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.panel-head p{font-size:14.5px;color:var(--muted);margin-top:4px}
+.search{display:flex;align-items:center;gap:10px;padding:0 16px;height:44px;min-width:min(100%,280px);border-radius:999px;background:rgba(0,0,0,.28);border:1px solid var(--line-strong);color:var(--muted)}
+.search svg{width:18px;height:18px;flex:none}
+.search input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--ink);font:500 14.5px var(--font)}
+.search:focus-within{border-color:var(--accent)}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.item{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid var(--line);transition:transform .25s,border-color .25s,background .25s;animation:up .55s cubic-bezier(.22,.7,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
+.item:hover{transform:translateY(-4px);border-color:var(--line-strong);background:rgba(255,255,255,.05)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.cover{position:relative;aspect-ratio:16/9;background:#070c1c;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid var(--line);cursor:pointer}
+.cover img.th{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.item:hover .cover img.th{transform:scale(1.04)}
+.cover .play{position:relative;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);box-shadow:0 10px 30px -8px rgba(93,240,168,.6);transition:transform .2s}
+.cover .play svg{width:24px;height:24px;fill:currentColor;stroke:none;margin-left:3px}
+.item:hover .play{transform:scale(1.1)}
+.cover .doc{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--accent)}
+.cover .doc svg{width:44px;height:44px}
+.cover .doc span{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.cover.deck img{width:64px;height:64px;border-radius:16px}
+.badge{position:absolute;left:12px;top:12px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(4,6,15,.78);border:1px solid var(--line-strong);color:var(--accent);backdrop-filter:blur(6px)}
+.i-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.i-body h4{font-size:17px;font-weight:700;line-height:1.35}
+.i-body p{font-size:14px;line-height:1.55;color:var(--muted)}
+.i-meta{font-size:12.5px;color:var(--muted-2)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.i-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
+.i-act .btn{padding:9px 16px;font-size:14px}
+.empty{grid-column:1/-1;padding:44px 20px;text-align:center;color:var(--muted);font-size:15px;line-height:1.7;border:1px dashed var(--line-strong);border-radius:16px}
+.empty code{color:var(--accent);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px}
 
-.chip{align-self:flex-start;font:700 14px 'JetBrains Mono','Hind Siliguri',monospace;letter-spacing:.05em;color:var(--r);border:1.5px solid var(--r);padding:3px 11px;border-radius:3px;background:var(--paper);transform:rotate(-1.2deg)}
-.slide.active .chip.r{transform:rotate(-1.2deg)}
-h2.t{font-size:42px;font-weight:700;line-height:1.25}
-h2.t::after{content:'';display:block;height:5px;width:0;margin-top:8px;background:var(--r);transition:width .9s .35s ease}
-.slide.active h2.t::after{width:110px}
-h3{font-size:25px;font-weight:700}
-p,li{font-size:23px;line-height:1.6}
-b,.hl{color:var(--tx);font-weight:700;box-shadow:inset 0 -.42em 0 var(--ah)}
-.mu{color:var(--mu)}
-.en{font-family:'Hind Siliguri','Segoe UI',sans-serif}
-.mono{font-family:'JetBrains Mono',monospace}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.card{background:var(--card);border:1.5px solid var(--ln);border-radius:6px;padding:18px 22px;position:relative;box-shadow:3px 3px 0 var(--lnl)}
-.card:hover{border-color:var(--r)}
-.card h3{margin-bottom:6px}
-.card p,.card li{font-size:20px;line-height:1.5}
-.card.a{border-left:8px solid var(--a)}.card.t{border-left:8px solid var(--t)}.card.r2{border-left:8px solid var(--r)}.card.g{border-left:8px solid var(--g)}
-.card .mu{box-shadow:none}
-.slide.active .float{animation:float 3.2s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-8px)}}
-.call{border-left:5px solid var(--a);background:var(--ah);padding:12px 20px;border-radius:0 6px 6px 0;font-size:22px;line-height:1.55}
-.call b{box-shadow:inset 0 -.42em 0 rgba(29,28,24,.12)}
-.call.t{border-color:var(--t);background:rgba(27,101,96,.12)}
-.call.r2{border-color:var(--r);background:rgba(181,57,31,.10)}
-.call.g{border-color:var(--g);background:rgba(59,107,42,.12)}
-.pill{display:inline-block;padding:4px 14px;border-radius:4px;background:var(--paper2);border:1px solid var(--lnl);font-size:19px;margin:3px 4px 3px 0}
-.row{display:grid;gap:12px;align-items:center;padding:10px 16px;border-radius:4px;background:var(--card);border:1px solid var(--lnl);font-size:20px;line-height:1.4}
-.row.h{background:var(--ink);border-color:var(--ink);font-weight:700;color:var(--paper)}
-.row b{box-shadow:none}
-.arrow{color:var(--r);font-size:34px;text-align:center;animation:nudge 1.2s ease-in-out infinite}
-@keyframes nudge{50%{transform:translateX(6px)}}
-.flow{display:flex;align-items:center;gap:12px}
-.node{flex:1;text-align:center;padding:14px 12px;border-radius:6px;background:var(--card);border:1.5px solid var(--ln);font-size:20px;line-height:1.4;box-shadow:3px 3px 0 var(--lnl)}
-.node.a{background:var(--ah)}.node.r2{background:rgba(181,57,31,.12);border-color:var(--r)}.node.g{background:rgba(59,107,42,.14);border-color:var(--g)}.node.t{background:rgba(27,101,96,.12);border-color:var(--t)}
-.down{color:var(--r);text-align:center;font-size:30px;animation:bob 1.2s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(6px)}}
+/* ---------- STUDY PATH ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.step{position:relative;padding:28px 24px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(12px);display:flex;flex-direction:column;gap:10px;transition:transform .25s,border-color .25s}
+.step:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+.step .n{font:800 13px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;color:var(--accent)}
+.step h3{font-size:19px;font-weight:700}
+.step p{font-size:14.5px;line-height:1.55;color:var(--muted)}
+.step a{margin-top:auto;padding-top:8px;font-size:14px;font-weight:600;color:var(--accent);display:inline-flex;gap:6px;align-items:center}
+.step a svg{width:16px;height:16px;transition:transform .2s}.step a:hover svg{transform:translateX(3px)}
 
-.title{justify-content:center;align-items:center;text-align:center;gap:18px}
-.title h1{font-family:'Fraunces','Georgia','Hind Siliguri',serif;font-size:70px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
-.title h1 span{color:var(--r)}
-.kicker{font:700 19px 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--r);text-transform:uppercase}
-.logo-hero{width:150px;height:150px}.logo-hero svg{width:100%;height:100%;display:block}
-.hint{color:var(--mu);font-size:18px;margin-top:10px}
+/* ---------- CTA + FOOTER ---------- */
+.cta-card{max-width:760px;margin:0 auto;text-align:center;padding:clamp(48px,7vw,80px) clamp(28px,5vw,64px);border-radius:var(--radius-lg);background:var(--glass-2);border:1px solid var(--line-strong);box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+.cta-card p{margin:18px auto 0;max-width:520px;color:var(--muted);font-size:17px;line-height:1.65}
+.cta-card .hero-actions{margin-top:34px}
+.footer{display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;margin-top:clamp(64px,9vw,110px);padding-top:48px;border-top:1px solid var(--line)}
+.footer-brand p{margin-top:12px;max-width:300px;color:var(--muted);font-size:14.5px;line-height:1.6}
+.footer-cols{display:flex;gap:clamp(32px,6vw,80px);flex-wrap:wrap}
+.footer-cols h5{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px;font-weight:600}
+.footer-cols a{display:block;font-size:14.5px;color:var(--muted);margin-bottom:10px;transition:color .2s;cursor:pointer}
+.footer-cols a:hover{color:var(--ink)}
+.copyright{text-align:center;margin-top:56px;font-size:13px;color:var(--muted-2)}
 
-.pyr{display:flex;flex-direction:column;gap:10px;align-items:center}
-.layer{padding:14px 20px;border-radius:6px;text-align:center;background:var(--card);border:1.5px solid var(--ln);font-size:20px;line-height:1.35;box-shadow:3px 3px 0 var(--lnl)}
-.layer b{display:block;font-size:22px;box-shadow:none}
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:clamp(10px,3vw,32px);background:rgba(2,4,10,.84);backdrop-filter:blur(8px);animation:fade .25s both}
+.modal[hidden]{display:none}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal-box{width:min(1040px,100%);max-height:100%;display:flex;flex-direction:column;border-radius:var(--radius-lg);background:#0a1024;border:1px solid var(--line-strong);box-shadow:var(--shadow);overflow:hidden;animation:pop .35s cubic-bezier(.22,.7,.2,1) both}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px 14px 22px;border-bottom:1px solid var(--line)}
+.modal-head h3{font-size:16px;font-weight:700;line-height:1.35;min-width:0}
+.modal-actions{display:flex;gap:8px;flex:none}
+.modal-actions .btn{padding:8px 14px;font-size:13.5px}
+.modal-body{background:#000;min-height:0;flex:1}
+.modal-body iframe{display:block;width:100%;border:0}
+.modal-body .yt{aspect-ratio:16/9;max-height:calc(100vh - 150px)}
+.modal-body .pdf{height:min(78vh,calc(100vh - 130px));background:#222}
+.modal-note{padding:40px 24px;text-align:center;background:#0a1024;color:var(--muted);line-height:1.7;font-size:15px}
+.modal-note .btn{margin:14px 6px 0}
 
-.vennwrap{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center;flex:1}
-svg text{font-family:'Hind Siliguri','Segoe UI',sans-serif}
-.venn circle{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
-.slide.active .venn circle{transform:scale(1)}
-.slide.active .venn circle:nth-of-type(2){transition-delay:.3s}.slide.active .venn circle:nth-of-type(3){transition-delay:.6s}
-.venn .lbl{opacity:0;transition:opacity .6s 1.1s}.slide.active .venn .lbl{opacity:1}
-.venn .hi{opacity:0;transition:opacity .8s 1.6s}.slide.active .venn .hi{opacity:1;animation:pulse 2s 2.4s infinite}
-@keyframes pulse{50%{opacity:.55}}
-
-.rings{position:relative;width:440px;height:440px;margin:auto}
-.ring{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;transform:scale(0);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
-.slide.active .ring{transform:scale(1)}
-.ring.o{inset:0;background:#d6a21e;border:2px solid var(--ink)}
-.ring.o2{inset:44px;background:var(--paper);transition-delay:.25s;border:2px solid var(--ink)}
-.ring.i{inset:70px;background:var(--card);border:2px solid var(--t);transition-delay:.5s;flex-direction:column;padding:20px}
-.rings .orb{position:absolute;inset:0;animation:spin 14s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.orb i{position:absolute;left:50%;top:-6px;width:12px;height:12px;background:var(--ink);border-radius:50%}
-
-.code{font-family:'JetBrains Mono',monospace;font-size:34px;background:var(--ink);color:var(--paper);border-radius:6px;padding:26px 30px;text-align:center;box-shadow:4px 4px 0 var(--lnl)}
-.code span[style*="--mu"]{color:#b9b19c !important}
-.code .hl{color:#f0b43a;box-shadow:none}
-.code .cur{display:inline-block;width:14px;height:36px;background:#f0b43a;vertical-align:middle;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-
-.tsvg{width:100%;height:300px;background:rgba(29,28,24,.04);border:1.5px solid var(--ln);border-radius:6px}
-.btn{cursor:pointer;border:1.5px solid var(--ln);background:var(--card);color:var(--tx);font:700 19px 'Hind Siliguri',sans-serif;padding:8px 20px;border-radius:5px;transition:.15s;box-shadow:2px 2px 0 var(--lnl)}
-.btn:hover{background:var(--ink);color:var(--paper)}
-.victim circle{fill:#1d1c18;transition:fill .4s}
-.victim path{stroke:#1d1c18;stroke-width:2.6;fill:none;stroke-linecap:round;transition:stroke .4s}
-.victim.hit circle{fill:var(--r)}.victim.hit path{stroke:var(--r)}
-
-.sqs{display:grid;grid-template-columns:repeat(10,1fr);gap:14px;width:520px}
-.sq{aspect-ratio:1;border-radius:6px;background:var(--r);transform:translate(var(--x),var(--y)) rotate(var(--rot)) scale(var(--s));transition:transform 1.6s cubic-bezier(.2,.8,.2,1),background .8s 1.2s,border-radius .8s 1.2s}
-.slide.active .sq{transform:none;background:var(--t);border-radius:2px}
-
-.balance{position:relative;width:560px;height:300px;margin:auto}
-.post{position:absolute;left:50%;bottom:0;width:14px;height:210px;margin-left:-7px;background:var(--ink);border-radius:4px}
-.base{position:absolute;left:50%;bottom:0;width:150px;height:14px;margin-left:-75px;background:var(--ink);border-radius:4px}
-.beam{--ang:0deg;position:absolute;left:50%;top:48px;width:480px;height:10px;margin-left:-240px;background:var(--ink);border-radius:4px;transform:rotate(var(--ang));transition:transform 2s cubic-bezier(.3,1.5,.5,1) .8s}
-.slide.active .beam{--ang:-9deg}
-.pan{position:absolute;top:8px;width:200px;transform:translateX(-50%) rotate(calc(var(--ang)*-1));transition:transform 2s cubic-bezier(.3,1.5,.5,1) .8s;text-align:center}
-.pan.l{left:20px}.pan.rr{left:460px}
-.pan .cup{margin-top:46px;padding:10px;border-radius:0 0 40px 40px;border:2px solid var(--t);border-top:4px solid var(--t);font-size:18px;line-height:1.35;background:rgba(27,101,96,.12)}
-.pan.rr .cup{border-color:var(--r);background:rgba(181,57,31,.12)}
-.pan:before{content:'';position:absolute;left:50%;top:0;width:2px;height:46px;background:var(--ink)}
-
-.track{position:relative;height:14px;border-radius:2px;background:linear-gradient(90deg,var(--r) 0 33%,var(--g) 33% 67%,var(--r) 67% 100%);margin:40px 0 12px;border:1.5px solid var(--ink)}
-.ball{position:absolute;top:-14px;left:0;width:36px;height:36px;border-radius:50%;background:var(--ink);border:4px solid var(--paper);margin-left:-18px;left:2%}
-.slide.active .ball{animation:swing 4s ease-in-out .6s forwards}
-@keyframes swing{0%{left:2%}30%{left:98%}60%{left:20%}80%{left:62%}100%{left:50%}}
-
-.bb{width:130px;height:130px;background:var(--paper2);border:2px solid var(--ln);border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:18px;line-height:1.3;padding:8px}
-.slide.active .bb.bad{animation:shake 1.2s 1s infinite}
-@keyframes shake{0%,70%,100%{transform:none}75%{transform:translateX(-6px) rotate(-3deg)}85%{transform:translateX(6px) rotate(3deg)}}
-.bb.good{border-color:var(--g);background:rgba(59,107,42,.14)}
-.slide.active .bb.good{animation:okbg 2s infinite}
-@keyframes okbg{50%{background:rgba(59,107,42,.32)}}
-.tag{font-size:54px;font-weight:700;line-height:1}
-
-.tl{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:70px}
-.tl:before{content:'';position:absolute;left:0;top:-30px;height:4px;width:0;background:var(--ink);transition:width 2.4s .4s ease}
-.slide.active .tl:before{width:100%}
-.tl .it{position:relative}
-.tl .it:before{content:'';position:absolute;top:-40px;left:10px;width:22px;height:22px;border-radius:50%;background:var(--r);border:3px solid var(--ink)}
-.tl .yr{color:var(--r);font:700 21px 'JetBrains Mono',monospace}
-.tl .it p{font-size:18px;line-height:1.45}
-
-.flip{perspective:900px;height:210px;cursor:pointer}
-.flip .in{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
-.flip.on .in{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:6px;padding:16px;border:1.5px solid var(--ln);background:var(--card);display:flex;flex-direction:column;justify-content:center;gap:6px;font-size:18px;line-height:1.4;box-shadow:3px 3px 0 var(--lnl)}
-.face.bk{transform:rotateY(180deg);border-color:var(--g);background:#e3ebd6}
-.face h3{font-size:21px}
-
-.opt{display:block;width:100%;text-align:left;cursor:pointer;margin:7px 0;padding:11px 18px;border-radius:5px;border:1.5px solid var(--lnl);background:var(--card);color:var(--tx);font:500 20px 'Hind Siliguri',sans-serif;transition:.15s}
-.opt:hover{border-color:var(--ink)}
-.opt.ok{background:rgba(59,107,42,.2);border-color:var(--g)}
-.opt.no{background:rgba(181,57,31,.16);border-color:var(--r)}
-.qbar{height:8px;border-radius:2px;background:var(--paper2);overflow:hidden;border:1px solid var(--lnl)}
-.qbar i{display:block;height:100%;width:0;background:var(--r);transition:width .5s}
-
-.pb{height:16px;border-radius:2px;background:var(--paper2);overflow:hidden;border:1px solid var(--lnl)}
-.pb i{display:block;height:100%;width:0;background:var(--t);transition:width 1.4s cubic-bezier(.2,.8,.2,1) .6s}
-.slide.active .pb i{width:var(--w)}
-
-.ans{font-size:20px;line-height:1.55}
-.ans .k{color:var(--tx);font-weight:700;box-shadow:inset 0 -.42em 0 var(--ah)}
-.num{display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--r);color:#fff;font-weight:700;align-items:center;justify-content:center;font-size:19px;margin-right:8px}
-.mark{float:right;font:700 15px 'JetBrains Mono',monospace;border:1.5px solid var(--r);color:var(--r);padding:2px 12px;border-radius:3px}
-
-#bar{position:fixed;left:0;top:0;height:4px;width:0;background:var(--r);z-index:20;transition:width .4s}
-#ui{position:fixed;right:16px;bottom:12px;display:flex;gap:8px;align-items:center;z-index:20;font:700 15px 'JetBrains Mono',monospace;color:#b9b19c}
-#ui button{cursor:pointer;width:38px;height:38px;border-radius:50%;border:1.5px solid #b9b19c;background:#2a2822;color:var(--paper);font-size:18px}
-#ui button:hover{border-color:#f0b43a;color:#f0b43a}
-#toc{position:fixed;left:16px;bottom:14px;z-index:20;font:700 14px 'JetBrains Mono','Hind Siliguri',monospace;color:#b9b19c;max-width:50vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:980px){.tiles{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.dock{grid-template-columns:1fr}}
+@media (max-width:720px){.nav-links{display:none}.nav{padding:18px 20px}.section{padding:clamp(64px,16vw,110px) 20px}.brand small{display:none}}
+@media (max-width:560px){.tiles,.steps{grid-template-columns:1fr}.items{grid-template-columns:1fr}.hero-actions .btn{flex:1;justify-content:center}.cta-card{padding:40px 22px}.footer{flex-direction:column}.modal-head{flex-wrap:wrap}.panel{padding:18px}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  [data-reveal]{opacity:1;transform:none;transition:none}
+  .item{animation:none}.scrollcue i:after{animation:none}
+}
 </style>
 </head>
 <body>
-<div id="bar"></div>
-<div id="stage">
+<canvas class="planet-canvas" id="planet" aria-hidden="true"></canvas>
 
-<!-- 1 TITLE -->
-<section class="slide title" data-t="শুরু">
-  <div class="logo-hero r z"><svg class="lg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="SE 441 Ethics logo"><style>.lg-beam{transform-origin:60px 35px;animation:lgTilt 6s ease-in-out infinite}
-.lg-pan{animation:lgUn 6s ease-in-out infinite}
-@keyframes lgTilt{0%{transform:rotate(-13deg)}12%{transform:rotate(9deg)}24%{transform:rotate(-5deg)}34%{transform:rotate(3deg)}44%{transform:rotate(-1.4deg)}52%,86%{transform:rotate(0)}100%{transform:rotate(-13deg)}}
-@keyframes lgUn{0%{transform:rotate(13deg)}12%{transform:rotate(-9deg)}24%{transform:rotate(5deg)}34%{transform:rotate(-3deg)}44%{transform:rotate(1.4deg)}52%,86%{transform:rotate(0)}100%{transform:rotate(13deg)}}</style><rect width="120" height="120" rx="26" fill="#1d1c18"/>
-  <rect x="57" y="35" width="6" height="55" fill="#f1ebdd"/>
-  <rect x="34" y="88" width="52" height="7" rx="3.5" fill="#f1ebdd"/>
-  <g class="lg-beam">
-    <rect x="16" y="32" width="88" height="6" rx="3" fill="#f1ebdd"/>
-    <g class="lg-pan" style="transform-origin:24px 38px">
-      <path d="M24 38 L12 64 M24 38 L36 64" stroke="#f1ebdd" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <path d="M9 64 H39 A15 11 0 0 1 9 64 Z" fill="#f1ebdd"/>
-      <rect x="18" y="52" width="12" height="12" rx="1.5" fill="#e8603f"/>
-    </g>
-    <g class="lg-pan" style="transform-origin:96px 38px">
-      <path d="M96 38 L84 64 M96 38 L108 64" stroke="#f1ebdd" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <path d="M81 64 H111 A15 11 0 0 1 81 64 Z" fill="#f1ebdd"/>
-      <circle cx="96" cy="57" r="7" fill="#4cb5aa"/>
-    </g>
-  </g>
-  <circle cx="60" cy="35" r="4.5" fill="#e0a526"/></svg></div>
-  <div class="kicker r">SE 441 · Fall 2026</div>
-  <h1 class="r">Software Engineering<br><span>Professional Ethics</span></h1>
-  <p class="r mu" style="font-size:26px">শূন্য থেকে পরীক্ষা পর্যন্ত — বাংলায় পুরো গাইড</p>
-  <div class="hint r">→ / Space চাপো, বা swipe করো · F = fullscreen</div>
-</section>
+<div class="page" id="top">
 
-<!-- 2 ROADMAP -->
-<section class="slide" data-t="কোর্সের মানচিত্র">
-  <div class="chip r">ভূমিকা</div>
-  <h2 class="t r">আমরা কী কী শিখব</h2>
-  <div class="grid2" style="flex:1;align-items:center">
-    <div class="pyr">
-      <div class="layer r d" style="--i:3;width:62%;border-color:var(--r)"><b>৪ · Cyber Laws</b>DSA 2018 · ICT Act 2006 · Copyright</div>
-      <div class="layer r d" style="--i:2;width:76%;border-color:var(--t)"><b>৩ · Societal Integration</b>সমাজ · Privacy · Open Source</div>
-      <div class="layer r d" style="--i:1;width:90%;border-color:var(--a)"><b>২ · Professional Protocols</b>IEEE · ACM · SE Codes</div>
-      <div class="layer r d" style="--i:0;width:100%;border-color:var(--g)"><b>১ · Foundational Theory</b>Ethical Frameworks &amp; Concepts</div>
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="#top"><img src="favicon.svg" alt=""><span>SE441</span><small>Study Hub</small></a>
+      <div class="nav-links">
+        <a href="#library" data-go="library">Library</a>
+        <a href="#videos" data-go="videos">Videos</a>
+        <a href="#notes" data-go="notes">Notes</a>
+        <a href="#path" data-go="path">Study path</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="fxBtn" type="button" aria-pressed="true" title="Turn the 3D planet on or off">Effects: On</button>
+      </div>
+    </nav>
+
+    <div class="hero-inner">
+      <span class="eyebrow" data-reveal style="--rd:0ms">SE 441 · Fall 2026</span>
+      <h1 class="hero-title" data-reveal style="--rd:60ms">Learn ethics<br>like an <em>engineer</em></h1>
+      <p class="hero-sub" data-reveal style="--rd:180ms">Interactive slides, videos, lesson notes and your lecturer's decks, all in one command center. Start from zero. Finish exam-ready.</p>
+      <p class="hero-bn" lang="bn" data-reveal style="--rd:240ms">শূন্য থেকে শুরু, পরীক্ষার জন্য প্রস্তুত।</p>
+      <div class="hero-actions" data-reveal style="--rd:300ms">
+        <a class="btn btn-primary" href="#slides" data-go="slides">Open the slides <svg class="i" viewBox="0 0 24 24" style="stroke-width:2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="btn btn-outline" href="#videos" data-go="videos">Watch the videos</a>
+      </div>
+      <div class="hero-stats" id="heroStats" data-reveal style="--rd:380ms"></div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="call r rt" style="--i:5">নিচ থেকে উপরে — আগে ভিত্তি (theory), তারপর নিয়ম, সমাজ, শেষে আইন।</div>
-      <div class="card a r rt" style="--i:6"><h3>নমুনা প্রশ্নের ধাঁচা</h3>
-        <p>Q1 · দুটি ethical issue <span class="hl">(৪)</span><br>Q2 · Deontology + Utilitarianism <span class="hl">(৭)</span><br>Q3 · একটি ICT ethics principle <span class="hl">(৪)</span></p></div>
+
+    <div class="dock" id="dock" data-reveal style="--rd:460ms"></div>
+    <div class="scrollcue" aria-hidden="true"><i></i></div>
+  </header>
+
+  <!-- ===================== LIBRARY ===================== -->
+  <section class="section library" id="library">
+    <div class="section-head">
+      <span class="eyebrow" data-reveal>Your study library</span>
+      <h2 data-reveal style="--rd:80ms">Everything for the course, on one shelf</h2>
+      <p data-reveal style="--rd:160ms">Pick a shelf. Slides open as interactive decks, videos play right here, and PDFs open in a reader. More shelves are on the way.</p>
     </div>
-  </div>
-</section>
 
-<!-- 3 WHAT IS ETHICS -->
-<section class="slide" data-t="Ethics কী">
-  <div class="chip r">পর্ব ১ · গোড়ার কথা</div>
-  <h2 class="t r">Ethics (নীতিশাস্ত্র) কী?</h2>
-  <div class="call r" style="font-size:27px">দর্শনের সেই শাখা, যা বলে <b>কোনটা ঠিক, কোনটা ভুল</b> — কোনটা ভালো, কোনটা খারাপ।</div>
-  <div class="grid3" style="margin-top:6px">
-    <div class="card r"><h3>উদ্দেশ্য</h3><p>সংঘাত, দায়িত্ব বা ন্যায্যতার পরিস্থিতিতে মানুষ কীভাবে সিদ্ধান্ত নেবে, তা ঠিক করা।</p></div>
-    <div class="card r"><h3>দৈনন্দিন উদাহরণ</h3><p>মিথ্যা বলা সহজ হলেও বন্ধুকে মিথ্যা না বলা।</p></div>
-    <div class="card a r"><h3>মূল প্রশ্ন</h3><p>অনুমতি ছাড়া কারও data ব্যবহার করা কি নৈতিক?</p></div>
-  </div>
-</section>
+    <div class="tiles" id="tiles" data-reveal></div>
 
-<!-- 4 ETHICS VS PROF -->
-<section class="slide" data-t="Ethics vs Professional Ethics">
-  <div class="chip r">পর্ব ১ · গোড়ার কথা</div>
-  <h2 class="t r">Ethics vs Professional Ethics</h2>
-  <div style="display:flex;flex-direction:column;gap:9px">
-    <div class="row h r" style="grid-template-columns:150px 1fr 1fr"><span></span><span>Ethics</span><span>Professional Ethics</span></div>
-    <div class="row r" style="grid-template-columns:150px 1fr 1fr"><b>সংজ্ঞা</b><span>ভালো-মন্দের সাধারণ নীতি</span><span>নির্দিষ্ট পেশার নৈতিক মান</span></div>
-    <div class="row r" style="grid-template-columns:150px 1fr 1fr"><b>কোথায়</b><span>জীবনের সব ক্ষেত্রে</span><span>কর্মক্ষেত্রে ও পেশাদার আচরণে</span></div>
-    <div class="row r" style="grid-template-columns:150px 1fr 1fr"><b>উৎস</b><span>সংস্কৃতি, ধর্ম, দর্শন, ব্যক্তিগত মূল্যবোধ</span><span>Code of conduct, industry standard, পেশাদার সংস্থা</span></div>
-    <div class="row r" style="grid-template-columns:150px 1fr 1fr"><b>উদাহরণ</b><span>বন্ধুর সাথে সৎ থাকা</span><span>Client-এর তথ্য গোপন রাখা; অন্যের code কপি না করা</span></div>
-    <div class="row r" style="grid-template-columns:150px 1fr 1fr"><b>বাধ্যবাধকতা</b><span>সমাজ বা নিজে মানে</span><span>প্রায়ই সংস্থা বা আইন কার্যকর করে</span></div>
-  </div>
-  <div class="call t r" style="margin-top:4px;font-size:20px"><b>কেন জরুরি?</b> বিশ্বাস (trust) · সততা (integrity) · জবাবদিহি (accountability) · ক্ষমতার অপব্যবহার রোধ</div>
-</section>
-
-<!-- 5 VENN -->
-<section class="slide" data-t="Law · Ethics · Preference">
-  <div class="chip r">পর্ব ১ · গোড়ার কথা</div>
-  <h2 class="t r">আচরণ নিয়ন্ত্রণ করে তিন শক্তি</h2>
-  <div class="vennwrap">
-    <svg class="venn" viewBox="0 0 560 400" style="width:100%;height:100%">
-      <defs><mask id="mk"><rect width="560" height="400" fill="#fff"/><circle cx="280" cy="270" r="110" fill="#000"/></mask></defs>
-      <circle cx="205" cy="160" r="110" fill="rgba(29,28,24,.07)" stroke="#1d1c18" stroke-width="2"/>
-      <circle cx="355" cy="160" r="110" fill="rgba(214,162,30,.18)" stroke="#8f5f00" stroke-width="2"/>
-      <circle cx="280" cy="270" r="110" fill="rgba(27,101,96,.14)" stroke="#1b6560" stroke-width="2"/>
-      <circle class="hi" cx="355" cy="160" r="110" fill="rgba(181,57,31,.38)" mask="url(#mk)" style="transform:none"/>
-      <g class="lbl" fill="#1d1c18" font-size="17" text-anchor="middle">
-        <text x="150" y="130" font-weight="700" font-size="19">Personal</text><text x="150" y="152" font-weight="700" font-size="19">Preference</text><text x="150" y="176" fill="#6a6455" font-size="14">খেয়ালখুশি</text>
-        <text x="415" y="130" font-weight="700" font-size="20">The Law</text><text x="415" y="154" fill="#6a6455" font-size="14">ন্যূনতম baseline</text><text x="415" y="172" fill="#6a6455" font-size="14">প্রযুক্তির চেয়ে পিছিয়ে</text>
-        <text x="280" y="300" font-weight="700" font-size="22" fill="#1b6560">Ethics</text><text x="280" y="324" fill="#6a6455" font-size="14">ঠিক-ভুলের কঠোর মানদণ্ড</text>
-      </g>
-    </svg>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="card a r rt"><h3>Legal but Unethical</h3><p>আইনে নিষেধ নেই — তবু কাজটা নৈতিকভাবে ভুল হতে পারে।</p></div>
-      <div class="call r rt">আইন হলো <b>ন্যূনতম</b>। Ethics তার চেয়ে অনেক উঁচু মান।</div>
+    <div class="panel" id="panel" data-reveal>
+      <div class="panel-head">
+        <div><h3 id="pTitle"></h3><p id="pBlurb"></p></div>
+        <label class="search">
+          <svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input id="q" type="search" placeholder="Search all shelves  ( / )" autocomplete="off" aria-label="Search the library">
+        </label>
+      </div>
+      <div class="items" id="items"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 6 GOOD PERSON vs ENGINEER -->
-<section class="slide" data-t="Good Person vs Good Engineer">
-  <div class="chip r">পর্ব ১ · গোড়ার কথা</div>
-  <h2 class="t r">Good Person vs Good Engineer</h2>
-  <div class="grid2" style="flex:1;align-items:center">
-    <div class="rings">
-      <div class="ring o"></div><div class="ring o2"></div>
-      <div class="ring i"><b class="en" style="font-size:22px;color:var(--t)">General Ethics</b><span style="font-size:19px">চুরি করো না<br>মিথ্যা বলো না</span></div>
-      <div class="orb"><i></i></div>
+  <!-- ===================== STUDY PATH ===================== -->
+  <section class="section path" id="path">
+    <div class="section-head">
+      <span class="eyebrow" data-reveal>A suggested route</span>
+      <h2 data-reveal style="--rd:80ms">Four steps from zero to confident</h2>
+      <p data-reveal style="--rd:160ms">You do not need any background. Follow the order, and every idea will have a place to land.</p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="card a r rt"><h3>বাইরের বলয়: Professional Ethics</h3><p>User data রক্ষা · IEEE/ACM code মানা · system-এর নিরাপত্তা নিশ্চিত করা</p></div>
-      <div class="call r rt" style="--i:2"><b>Asymmetric power:</b> তুমি source code বোঝো, user বোঝে না। এই জ্ঞান তোমার উপর <b>higher standard of duty</b> আনে।</div>
+    <div class="steps">
+      <div class="step" data-reveal style="--rd:0ms"><span class="n">01 · WARM UP</span><h3>Watch the overview</h3><p>A 22-minute tour of the whole subject, so the vocabulary feels familiar before you study it.</p><a href="#videos" data-go="videos">Go to videos <svg class="i" viewBox="0 0 24 24" style="stroke-width:2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+      <div class="step" data-reveal style="--rd:90ms"><span class="n">02 · READ</span><h3>Work through the notes</h3><p>Week 1, then Week 2. Short PDFs that define every term you will be asked about.</p><a href="#notes" data-go="notes">Go to notes <svg class="i" viewBox="0 0 24 24" style="stroke-width:2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+      <div class="step" data-reveal style="--rd:180ms"><span class="n">03 · PRACTISE</span><h3>Walk the interactive deck</h3><p>Play the trolley problem, flip the scenario cards, then take the quiz at the end.</p><a href="#slides" data-go="slides">Go to slides <svg class="i" viewBox="0 0 24 24" style="stroke-width:2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+      <div class="step" data-reveal style="--rd:270ms"><span class="n">04 · COMPARE</span><h3>Check against Sir's slides</h3><p>Match what you understood with how the lecturer actually presented it in class.</p><a href="#sirs" data-go="sirs">Go to Sir's slides <svg class="i" viewBox="0 0 24 24" style="stroke-width:2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 7 WHY SOFTWARE NEEDS ETHICS -->
-<section class="slide" data-t="Software-এ Ethics কেন">
-  <div class="chip r">পর্ব ১ · গোড়ার কথা</div>
-  <h2 class="t r">Software-এর জন্য Ethics কেন লাগে?</h2>
-  <div class="code r z"><span style="color:var(--mu)">1 line of code ×</span> <span class="hl" data-count="1000000">0</span> <span style="color:var(--mu)">users =</span> Massive Impact<span class="cur"></span></div>
-  <div class="grid3">
-    <div class="card r"><h3>Scale</h3><p>সেতু ভাঙলে শত মানুষ মরে। Software ব্যর্থ হলে বৈশ্বিক বাজার ধসে, pacemaker বন্ধ হয়।</p></div>
-    <div class="card r"><h3>Permanence</h3><p>আজ সংগ্রহ করা data চিরকাল থেকে যায়।</p></div>
-    <div class="card r"><h3>Opacity</h3><p>Black-box algorithm জটিল গণিতের আড়ালে discrimination লুকিয়ে রাখে।</p></div>
-  </div>
-</section>
-
-<!-- 8 TROLLEY -->
-<section class="slide" data-t="Trolley Problem" data-hook="trolley">
-  <div class="chip r">পর্ব ২ · Ethical Frameworks</div>
-  <h2 class="t r">Trolley Problem — গণিত এক, সিদ্ধান্ত আলাদা</h2>
-  <svg class="tsvg r" id="tsvg" viewBox="0 0 900 300">
-    <path id="pStraightV" d="M40 200 L860 200" stroke="#a79f8a" stroke-width="6" fill="none"/>
-    <path id="pSwitchV" d="M330 200 C420 200 440 110 540 110 L860 110" stroke="#a79f8a" stroke-width="6" fill="none"/>
-    <path id="pStraight" d="M40 200 L780 200" stroke="none" fill="none"/>
-    <path id="pSwitch" d="M40 200 L330 200 C420 200 440 110 540 110 L780 110" stroke="none" fill="none"/>
-    <path d="M40 200 L860 200" stroke="#6a6455" stroke-width="14" stroke-dasharray="3 22" fill="none"/>
-    <path d="M330 200 C420 200 440 110 540 110 L860 110" stroke="#6a6455" stroke-width="14" stroke-dasharray="3 22" fill="none"/>
-    <g id="lever" style="transform-origin:330px 232px;transition:transform .5s"><line x1="330" y1="232" x2="330" y2="262" stroke="#b5391f" stroke-width="6" stroke-linecap="round"/><circle cx="330" cy="262" r="9" fill="#b5391f"/></g>
-    <text x="330" y="292" fill="#6a6455" font-size="14" text-anchor="middle">lever</text>
-    <g id="vic5"><g class="victim" transform="translate(720,197)"><circle cx="9" cy="-24" r="5.5"/><path d="M9 -18V-6M9 -15L2 -8M9 -15L16 -8M9 -6L4 0M9 -6L14 0"/></g><g class="victim" transform="translate(742,197)"><circle cx="9" cy="-24" r="5.5"/><path d="M9 -18V-6M9 -15L2 -8M9 -15L16 -8M9 -6L4 0M9 -6L14 0"/></g><g class="victim" transform="translate(764,197)"><circle cx="9" cy="-24" r="5.5"/><path d="M9 -18V-6M9 -15L2 -8M9 -15L16 -8M9 -6L4 0M9 -6L14 0"/></g><g class="victim" transform="translate(786,197)"><circle cx="9" cy="-24" r="5.5"/><path d="M9 -18V-6M9 -15L2 -8M9 -15L16 -8M9 -6L4 0M9 -6L14 0"/></g><g class="victim" transform="translate(808,197)"><circle cx="9" cy="-24" r="5.5"/><path d="M9 -18V-6M9 -15L2 -8M9 -15L16 -8M9 -6L4 0M9 -6L14 0"/></g></g>
-    <g id="vic1"><g class="victim" transform="translate(760,107)"><circle cx="9" cy="-24" r="5.5"/><path d="M9 -18V-6M9 -15L2 -8M9 -15L16 -8M9 -6L4 0M9 -6L14 0"/></g></g>
-    <text x="780" y="236" fill="#6a6455" font-size="15" text-anchor="middle">৫ জন</text>
-    <text x="772" y="146" fill="#6a6455" font-size="15" text-anchor="middle">১ জন</text>
-    <g id="trolley"><rect x="-44" y="-52" width="88" height="42" rx="8" fill="#b5391f"/><rect x="-34" y="-44" width="14" height="16" rx="2" fill="#f1ebdd"/><rect x="-12" y="-44" width="14" height="16" rx="2" fill="#f1ebdd"/><rect x="10" y="-44" width="14" height="16" rx="2" fill="#f1ebdd"/><circle cx="-26" cy="-8" r="7" fill="#1d1c18"/><circle cx="26" cy="-8" r="7" fill="#1d1c18"/></g>
-  </svg>
-  <div style="display:flex;gap:12px;align-items:center" class="r">
-    <button class="btn" id="bRun">▶ ট্রেন ছাড়ো</button>
-    <button class="btn" id="bLever">Lever টানো</button>
-    <div id="tout" class="call" style="flex:1;font-size:19px;padding:8px 16px">Lever না টানলে ট্রেন সোজা ৫ জনের দিকে যাবে।</div>
-  </div>
-  <div class="grid2 r" style="gap:12px">
-    <div class="call t" style="font-size:18px;padding:8px 14px"><b>Utilitarian:</b> lever টানো — ১ মরে, ৫ বাঁচে (ফলাফলের হিসাব)।</div>
-    <div class="call r2" style="font-size:18px;padding:8px 14px"><b>Deontologist:</b> সক্রিয়ভাবে কাউকে মারা নিয়ম-বিরুদ্ধ — তাই দ্বিধা।</div>
-  </div>
-</section>
-
-<!-- 9 INTUITION -->
-<section class="slide" data-t="Intuition Doesn't Scale" data-hook="squares">
-  <div class="chip r">পর্ব ২ · Ethical Frameworks</div>
-  <h2 class="t r">Intuition Doesn't Scale.</h2>
-  <div class="grid2" style="flex:1;align-items:center">
-    <div class="sqs" id="sqs"></div>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="call r rt">তুমি বুদ্ধিমান, তবু trolley নিয়ে সবার মত আলাদা — এ তো স্বাভাবিক।</div>
-      <div class="call t r rt">কিন্তু <b>লক্ষ মানুষের</b> জন্য software বানালে "মনে হলো তাই" যথেষ্ট নয়।</div>
-      <div class="card a r rt"><h3>দরকার: একটি কঠোর framework</h3><p>বিশৃঙ্খল intuition → সুশৃঙ্খল, ব্যাখ্যাযোগ্য যুক্তি।</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 10 FRAMEWORKS OVERVIEW -->
-<section class="slide" data-t="চারটি Framework">
-  <div class="chip r">পর্ব ২ · Ethical Frameworks</div>
-  <h2 class="t r">চারটি মূল Framework</h2>
-  <div class="grid4" style="flex:1">
-    <div class="card a r"><h3>Deontology</h3><p class="mu">Duty</p><p>আমার চূড়ান্ত <b>কর্তব্য</b> কী?</p></div>
-    <div class="card t r"><h3>Utilitarianism</h3><p class="mu">Outcome</p><p>কীসে <b>সবচেয়ে বেশি মানুষের</b> সবচেয়ে বেশি ভালো?</p></div>
-    <div class="card g r"><h3>Virtue Ethics</h3><p class="mu">Character</p><p>একজন <b>excellent engineer</b> কী করত?</p></div>
-    <div class="card r2 r"><h3>Rights-Based</h3><p class="mu">Rights</p><p>কার <b>অধিকার</b> লঙ্ঘিত হচ্ছে?</p></div>
-  </div>
-  <div class="call r">নমুনা প্রশ্ন Q2-তে চাওয়া হয়েছে: <b>Deontology</b> ও <b>Utilitarianism</b>।</div>
-</section>
-
-<!-- 11 DEONTOLOGY -->
-<section class="slide" data-t="Deontology">
-  <div class="chip r">পর্ব ২ · Framework ১</div>
-  <h2 class="t r">Deontology — অলঙ্ঘনীয় নিয়ম </h2>
-  <div class="grid2" style="gap:24px">
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="call r l"><b>ফোকাস:</b> নিয়ম ও কাজ, ফলাফল না।<br><b>ধারণা:</b> খারাপ ফল হলেও কাজটা ঠিক, যদি তা কর্তব্য মেনে হয়।</div>
-      <div class="card a r l"><h3>Kant-এর Categorical Imperative</h3><p>কাজটা তখনই ঠিক, যখন তুমি চাইবে সেটা <b>সবার জন্য সার্বজনীন আইন</b> হোক।</p></div>
-      <div class="card g r l"><h3>SE-তে অনুবাদ</h3><p>অনুমতি ছাড়া data কখনো নয় — জীবন-রক্ষাকারী মডেলের জন্যও না। ফল যা-ই হোক, নিয়ম ভাঙা যাবে না।</p></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-      <div class="node r rt" style="--i:2">একটি কাজ ভাবো<br><span class="mu" style="font-size:17px">"অনুমতি ছাড়া data নিই"</span></div><div class="down r rt" style="--i:3">↓</div>
-      <div class="node a r rt" style="--i:4">সবাই এটা করলে কী হবে?<br><span class="mu" style="font-size:17px">Universal law test</span></div><div class="down r rt" style="--i:5">↓</div>
-      <div class="node r2 r rt" style="--i:6">আস্থা ভেঙে পড়ে ➜ কাজটা <b style="color:var(--r)">ভুল</b></div>
-    </div>
-  </div>
-  <div class="card r" style="padding:12px 20px"><p><b>Collision of Duties:</b> Employer-এর প্রতি দায়িত্ব (লাভ, NDA, দ্রুত ship) বনাম User-এর প্রতি দায়িত্ব (privacy, safety, transparency) — এখানেই জটিলতা।</p></div>
-</section>
-
-<!-- 12 UTILITARIAN -->
-<section class="slide" data-t="Utilitarianism" data-hook="scale">
-  <div class="chip r">পর্ব ২ · Framework ২</div>
-  <h2 class="t r">Utilitarianism — ফলাফলের হিসাব </h2>
-  <div class="grid2" style="gap:24px;flex:1;align-items:center">
-    <div class="balance r z">
-      <div class="post"></div><div class="base"></div>
-      <div class="beam">
-        <div class="pan l"><div class="cup">✓ Benefit<br>১০ লক্ষ user-এর সুবিধা</div></div>
-        <div class="pan rr"><div class="cup">− Harm<br>কয়েকজনের চাকরি</div></div>
+  <!-- ===================== CTA + FOOTER ===================== -->
+  <section class="section cta" id="about">
+    <div class="cta-card">
+      <span class="eyebrow" data-reveal style="--rd:60ms">Ready when you are</span>
+      <h2 data-reveal style="--rd:140ms">Start with the slides</h2>
+      <p data-reveal style="--rd:220ms">Thirty-two slides, a playable trolley problem and a seven-question quiz. Bangla explanations, English answers.</p>
+      <div class="hero-actions" data-reveal style="--rd:300ms">
+        <a class="btn btn-primary" href="decks/ethics/">Open the Ethics deck <svg class="i" viewBox="0 0 24 24" style="stroke-width:2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="btn btn-outline" href="#videos" data-go="videos">Browse videos</a>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="call t r rt"><b>"Greatest good for the greatest number"</b><br>উদ্দেশ্যের চেয়ে <b>ফলাফল</b> বড়।</div>
-      <div class="card r rt"><h3>সূত্র</h3><p class="mono" style="color:var(--a);font-size:21px">Benefit ↑ · Harm ↓</p></div>
-      <div class="card r rt"><h3>উদাহরণ</h3><p>দ্রুত security patch ছাড়ো — লক্ষ user cyberattack থেকে বাঁচবে। ১০ জন ছাঁটাই করে ১০০ জনের চাকরি বাঁচানো।</p></div>
-      <div class="call r2 r rt" style="font-size:19px"><b>দুর্বলতা:</b> সংখ্যালঘুর ক্ষতি উপেক্ষিত হতে পারে।</div>
-    </div>
-  </div>
-</section>
 
-<!-- 13 VIRTUE -->
-<section class="slide" data-t="Virtue Ethics">
-  <div class="chip r">পর্ব ২ · Framework ৩</div>
-  <h2 class="t r">Virtue Ethics — চরিত্রই আসল </h2>
-  <div class="call g r"><b>Aristotle:</b> শুধু ভালো কাজ নয় — <b>ভালো মানুষ হও।</b></div>
-  <div>
-    <div class="grid3 mu" style="text-align:center;font-size:20px;font-weight:600"><span style="color:var(--r)">কমতি<br>ভীরুতা</span><span style="color:var(--g)">Golden Mean<br>সাহস</span><span style="color:var(--r)">বাড়াবাড়ি<br>বেপরোয়া</span></div>
-    <div class="track r"><div class="ball"></div></div>
-  </div>
-  <div class="flow r">
-    <div class="node">চরিত্র গড়ো</div><span class="arrow">➜</span><div class="node">অভ্যাস</div><span class="arrow">➜</span><div class="node g">স্বাভাবিকভাবে ভালো কাজ</div>
-  </div>
-  <div class="grid3">
-    <div class="card r"><h3>গুণ</h3><p>সততা · সাহস · প্রজ্ঞা · ন্যায়বিচার · আত্মসংযম · integrity</p></div>
-    <div class="card r"><h3>উদাহরণ ১</h3><p>নিজের ভুলে হওয়া security flaw স্বীকার করে overtime করে ঠিক করা।</p></div>
-    <div class="card r"><h3>উদাহরণ ২</h3><p>Hidden spyware বসাতে অস্বীকার করা। Accessible software বানানো ন্যায্যতার কারণে।</p></div>
-  </div>
-</section>
-
-<!-- 14 RIGHTS -->
-<section class="slide" data-t="Rights-Based Ethics">
-  <div class="chip r">পর্ব ২ · Framework ৪</div>
-  <h2 class="t r">Rights-Based Ethics — অধিকারের সুরক্ষা </h2>
-  <div class="grid2" style="gap:24px;flex:1;align-items:center">
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="call r2 r l">প্রতিটি মানুষের কিছু <b>অবিচ্ছেদ্য অধিকার</b> আছে। অধিকার ভাঙলে ফল ভালো হলেও কাজটা অনৈতিক।</div>
-      <div class="card a r l"><h3>উদাহরণ</h3><p>Customer-এর অনুমতি ছাড়া data ব্যবহার করা যাবে না — সেবা ভালো হবে বলেও না।</p></div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
-      <div class="pill r z" style="--i:2;font-size:24px;padding:10px 22px"> Right to Privacy</div>
-      <div class="pill r z" style="--i:3;font-size:24px;padding:10px 22px"> Freedom of Expression</div>
-      <div class="pill r z" style="--i:4;font-size:24px;padding:10px 22px"> Life &amp; Safety</div>
-      <div class="pill r z" style="--i:5;font-size:24px;padding:10px 22px"> Right to Information</div>
-      <div class="pill r z" style="--i:6;font-size:24px;padding:10px 22px"> Equality before Law</div>
-    </div>
-  </div>
-</section>
-
-<!-- 15 COMPARISON -->
-<section class="slide" data-t="Framework তুলনা">
-  <div class="chip r">পর্ব ২ · সারসংক্ষেপ</div>
-  <h2 class="t r">চার Framework — এক নজরে</h2>
-  <div style="display:flex;flex-direction:column;gap:9px">
-    <div class="row h r" style="grid-template-columns:180px 150px 1fr 1fr"><span>Framework</span><span>ফোকাস</span><span>মূল নীতি</span><span>উদাহরণ</span></div>
-    <div class="row r" style="grid-template-columns:180px 150px 1fr 1fr"><b>Deontology</b><span>Duty / Rules</span><span>ফল যা-ই হোক, নিয়ম মানো</span><span>কষ্ট দিলেও সত্য বলো</span></div>
-    <div class="row r" style="grid-template-columns:180px 150px 1fr 1fr"><b>Utilitarianism</b><span>Outcomes</span><span>সবচেয়ে বেশি ভালো করো</span><span>বেশি চাকরি বাঁচাতে কিছু ছাঁটাই</span></div>
-    <div class="row r" style="grid-template-columns:180px 150px 1fr 1fr"><b>Virtue</b><span>Character</span><span>ভালো মানুষ হও</span><span>দয়া থেকে সাহায্য</span></div>
-    <div class="row r" style="grid-template-columns:180px 150px 1fr 1fr"><b>Rights-Based</b><span>Rights</span><span>অন্যের অধিকার সম্মান করো</span><span>অনুমতি ছাড়া data নয়</span></div>
-  </div>
-  <div class="grid3">
-    <div class="card r"><h3>Security patch</h3><p><b>Util:</b> দ্রুত ঠিক করো<br><b>Virtue:</b> ঝুঁকি নিয়ে সৎ থাকো</p></div>
-    <div class="card r"><h3>Data privacy</h3><p><b>Util:</b> লাভ বনাম ক্ষতি মাপো<br><b>Virtue:</b> user-এর মর্যাদা রক্ষা</p></div>
-    <div class="card r"><h3>AI design</h3><p><b>Util:</b> fairness ও accuracy বাড়াও<br><b>Virtue:</b> বৈধ হলেও ক্ষতি এড়াও</p></div>
-  </div>
-</section>
-
-<!-- 16 ANCHOR -->
-<section class="slide" data-t="Anchor of Justification">
-  <div class="chip r">পর্ব ২ · পরীক্ষার সোনালি নিয়ম</div>
-  <h2 class="t r">The Anchor of Justification</h2>
-  <div class="flow r" style="gap:16px;margin-top:6px">
-    <div class="node" style="max-width:120px;flex:none">Input</div><span class="arrow">➜</span>
-    <div class="bb bad">Black Box<br><span style="font-size:14px;color:var(--mu)">"I just felt like it"</span></div><span class="arrow">➜</span>
-    <div class="tag" style="color:var(--r)">✗</div><b style="color:var(--r);font-size:26px">Fail</b>
-    <div style="flex:1"></div>
-    <div class="mu" style="font-size:19px;max-width:300px">Anti-pattern</div>
-  </div>
-  <div class="flow r" style="gap:16px;margin-top:10px">
-    <div class="node" style="max-width:120px;flex:none">Input</div><span class="arrow">➜</span>
-    <div class="bb good">Framework<br><span style="font-size:14px;color:var(--g)">Justification</span></div><span class="arrow">➜</span>
-    <div class="tag" style="color:var(--g)">✓</div><b style="color:var(--g);font-size:26px">Pass</b>
-    <div style="flex:1"></div>
-    <div class="mu" style="font-size:19px;max-width:300px">Standard</div>
-  </div>
-  <div class="call r2 r">Code ভাঙলে যেমন logic দেখাতে হয়, নৈতিক সিদ্ধান্তেও <b>স্বীকৃত framework দিয়ে যুক্তি</b> দেখাতে হবে। "আমার মনে হলো" = <b style="color:var(--r)">failing grade</b>।</div>
-  <div class="call g r">পরীক্ষায় লেখার ছাঁচ: <b>"Under Deontology, … because …"</b></div>
-</section>
-
-<!-- 17 COMPUTER ETHICS -->
-<section class="slide" data-t="Computer Ethics কী">
-  <div class="chip r">পর্ব ৩ · Computer Ethics</div>
-  <h2 class="t r">Computer Ethics কী?</h2>
-  <div class="call r" style="font-size:24px">কম্পিউটার ও তথ্যপ্রযুক্তির ব্যবহার থেকে উদ্ভূত নৈতিক সমস্যা ও দায়িত্বের অধ্যয়ন।</div>
-  <div class="card a r"><h3>James H. Moor (1985)</h3><p>কম্পিউটার প্রযুক্তির <b>প্রকৃতি ও সামাজিক প্রভাবের বিশ্লেষণ</b>, এবং তার নৈতিক ব্যবহারের জন্য <b>নীতি তৈরি ও যৌক্তিকতা প্রমাণ</b>।</p></div>
-  <h3 class="r mu">Software engineer-দের জন্য কেন জরুরি?</h3>
-  <div class="r"><span class="pill"> স্বাস্থ্য</span><span class="pill"> ব্যাংক</span><span class="pill"> পরিবহন</span><span class="pill"> জাতীয় নিরাপত্তা</span></div>
-  <div class="r"><span class="pill" style="border-color:var(--r)">Privacy লঙ্ঘন</span><span class="pill" style="border-color:var(--r)">Systemic bias</span><span class="pill" style="border-color:var(--r)">Identity theft</span><span class="pill" style="border-color:var(--r)">আর্থিক প্রতারণা</span><span class="pill" style="border-color:var(--r)">শারীরিক ক্ষতি</span></div>
-</section>
-
-<!-- 18 FOUNDATIONS -->
-<section class="slide" data-t="চার ভিত্তি">
-  <div class="chip r">পর্ব ৩ · Computer Ethics</div>
-  <h2 class="t r">Computer Ethics-এর ৪ ভিত্তি</h2>
-  <div class="grid2" style="flex:1">
-    <div class="card a r"><h3>১. Respect for Privacy</h3><p>সম্মতি ছাড়া data সংগ্রহ বা শেয়ার নয়। Data নিরাপদে রাখো।</p></div>
-    <div class="card t r"><h3>২. Honesty &amp; Integrity</h3><p>Plagiarism নয়। Backdoor বা malicious code নয়।</p></div>
-    <div class="card g r"><h3>৩. Responsibility</h3><p>নিজের software-এর দায় নাও। ক্ষতি হলেও flaw ও security risk <b>report করো</b>।</p></div>
-    <div class="card r2 r"><h3>৪. Fairness &amp; Non-discrimination</h3><p>Algorithmic bias এড়াও। Race বা gender-এর ভিত্তিতে বৈষম্য নয়।</p></div>
-  </div>
-</section>
-
-<!-- 19 CORE ISSUES -->
-<section class="slide" data-t="মূল নৈতিক ইস্যু">
-  <div class="chip r">পর্ব ৩ · Computer Ethics</div>
-  <h2 class="t r">মূল নৈতিক ইস্যুগুলো</h2>
-  <div class="grid5" style="flex:1">
-    <div class="card r"><h3>Privacy</h3><p>ব্যক্তিগত তথ্য রক্ষা<br><span class="mu">Cambridge Analytica</span></p></div>
-    <div class="card r"><h3>Intellectual Property</h3><p>Copyright, license, patent মানা<br><span class="mu">Attribution ছাড়া open-source</span></p></div>
-    <div class="card r"><h3>Security</h3><p>User-কে ঝুঁকিতে না ফেলা<br><span class="mu">পুরনো encryption</span></p></div>
-    <div class="card r"><h3>Digital Divide</h3><p>প্রযুক্তিতে সমান প্রবেশাধিকার<br><span class="mu">শুধু ইংরেজিতে চলা system</span></p></div>
-    <div class="card r"><h3>Automation &amp; Jobs</h3><p>AI দিয়ে চাকরি প্রতিস্থাপন<br><span class="mu">Self-checkout</span></p></div>
-  </div>
-  <div class="call r" style="font-size:20px">আরও: AI bias · social media/cyberbullying · misinformation · deepfake</div>
-</section>
-
-<!-- 20 HISTORY -->
-<section class="slide" data-t="ইতিহাস">
-  <div class="chip r">পর্ব ৩ · Computer Ethics</div>
-  <h2 class="t r">Computer Ethics-এর ইতিহাস</h2>
-  <div class="tl">
-    <div class="it r" style="--i:3"><div class="yr">1940–50</div><p>ENIAC, UNIVAC। সামরিক ব্যবহার ও দায়িত্বের প্রশ্ন।</p></div>
-    <div class="it r" style="--i:4"><div class="yr">1960–70</div><p>বিশ্ববিদ্যালয়ে ব্যবহার। Data privacy ও IP।</p></div>
-    <div class="it r" style="--i:5"><div class="yr">1970–80</div><p>Personal computer। Piracy ও unauthorized access।</p></div>
-    <div class="it r" style="--i:6"><div class="yr">1980s</div><p>Hacker culture। ACM ও IEEE code তৈরি।</p></div>
-    <div class="it r" style="--i:7"><div class="yr">1990s</div><p>Internet। Censorship ও online behavior।</p></div>
-    <div class="it r" style="--i:8"><div class="yr">21 শতক</div><p>AI, bias, IoT, information warfare।</p></div>
-  </div>
-  <div class="call r" style="margin-top:auto">ক্ষেত্রটি <b>গতিশীল</b> — প্রযুক্তি বদলায়, নৈতিক প্রশ্নও বদলায়।</div>
-</section>
-
-<!-- 21 LAWS -->
-<section class="slide" data-t="আইন">
-  <div class="chip r">পর্ব ৩ · আইন</div>
-  <h2 class="t r">আইনি কাঠামো</h2>
-  <div class="grid4">
-    <div class="card a r"><h3>ICT Act 2006</h3><p>সাইবার অপরাধ, data misuse, electronic transaction নিয়ন্ত্রণ</p></div>
-    <div class="card a r"><h3>Digital Security Act 2018</h3><p>অবৈধ প্রবেশ, data breach, অনলাইন মানহানি রোধ</p></div>
-    <div class="card t r"><h3>GDPR</h3><p>ব্যবহারকারীর সম্মতি ও privacy-র অধিকার</p></div>
-    <div class="card t r"><h3>DMCA</h3><p>ডিজিটাল intellectual property রক্ষা</p></div>
-  </div>
-  <h3 class="r mu" style="margin-top:6px">তিনটি মূল আইনি ধারণা</h3>
-  <div class="grid3">
-    <div class="card r2 r"><h3>Unauthorized Access</h3><p>Hacking, data breach</p></div>
-    <div class="card r2 r"><h3>Misuse of Data</h3><p>অনুমতি ছাড়া user data বিক্রি</p></div>
-    <div class="card r2 r"><h3>Cybercrime</h3><p>Virus ছড়ানো, ই-লেনদেনে প্রতারণা</p></div>
-  </div>
-</section>
-
-<!-- 22 CODES -->
-<section class="slide" data-t="ACM · IEEE · সাধারণ নীতি">
-  <div class="chip r">পর্ব ৩ · Codes of Ethics</div>
-  <h2 class="t r">ACM, IEEE ও সাধারণ নীতিগুলো</h2>
-  <div class="grid2">
-    <div class="card a r l"><h3>ACM Code</h3><p>সমাজের কল্যাণে অবদান · ক্ষতি এড়ানো · সৎ ও বিশ্বস্ত থাকা · <b>Privacy-কে সম্মান</b> · Confidentiality রক্ষা</p></div>
-    <div class="card t r rt"><h3>IEEE Code</h3><p>সিদ্ধান্তের দায় নেওয়া · স্বার্থের সংঘাত এড়ানো · প্রযুক্তির প্রভাব সম্পর্কে বোঝাপড়া বাড়ানো</p></div>
-  </div>
-  <h3 class="r mu">General ✕ Professional ✕ Computer — তিনটিতেই এই নীতি</h3>
-  <div style="display:flex;flex-direction:column;gap:8px">
-    <div class="row r" style="grid-template-columns:200px 1fr"><b>Do No Harm</b><span>Buggy software না ছাড়া</span></div>
-    <div class="row r" style="grid-template-columns:200px 1fr"><b>Honesty</b><span>Software-এর সীমাবদ্ধতা পরিষ্কার জানানো</span></div>
-    <div class="row r" style="grid-template-columns:200px 1fr"><b>Fairness</b><span>Inclusive, bias-মুক্ত software</span></div>
-    <div class="row r" style="grid-template-columns:200px 1fr"><b>Respect for Rights</b><span>User privacy ও data অপব্যবহার না করা</span></div>
-    <div class="row r" style="grid-template-columns:200px 1fr"><b>Accountability</b><span>Code-এর সমস্যার দায় নেওয়া</span></div>
-  </div>
-</section>
-
-<!-- 23 SCENARIOS -->
-<section class="slide" data-t="Real-world Scenarios">
-  <div class="chip r">পর্ব ৩ · অনুশীলন</div>
-  <h2 class="t r">Scenario — কার্ড উল্টে উত্তর দেখো </h2>
-  <div class="grid3" style="gap:14px">
-    <div class="flip r" onclick="this.classList.toggle('on')"><div class="in"><div class="face"><h3>Health app breach</h3>Engineer দেখল user-এর health record unencrypted।</div><div class="face bk"><h3>✓ সিদ্ধান্ত</h3>সঙ্গে সঙ্গে report করো, ঠিক করো, দরকারে user-কে জানাও।</div></div></div>
-    <div class="flip r" onclick="this.classList.toggle('on')"><div class="in"><div class="face"><h3>Biased AI</h3>Facial recognition গাঢ় ত্বকে বেশি ভুল করে।</div><div class="face bk"><h3>✓ সিদ্ধান্ত</h3>বৈচিত্র্যময় data দিয়ে retrain করো; stakeholder-কে bias জানাও।</div></div></div>
-    <div class="flip r" onclick="this.classList.toggle('on')"><div class="in"><div class="face"><h3>GitHub code কপি</h3>"All rights reserved" repo থেকে solution কপি।</div><div class="face bk"><h3>✓ সিদ্ধান্ত</h3>License মানো। Attribution সহ open-source বিকল্প ব্যবহার করো।</div></div></div>
-    <div class="flip r" onclick="this.classList.toggle('on')"><div class="in"><div class="face"><h3>Crack করা software</h3>Assignment-এর জন্য paid software crack করে নামানো।</div><div class="face bk"><h3>✓ বিশ্লেষণ</h3>General: চুরি · Computer: IP লঙ্ঘন · Professional: বৈধ software ব্যবহার শেখা।</div></div></div>
-    <div class="flip r" onclick="this.classList.toggle('on')"><div class="in"><div class="face"><h3>Breach cover-up</h3>Data leak লুকিয়ে company-র ইমেজ বাঁচানো।</div><div class="face bk"><h3>✓ বিশ্লেষণ</h3>অসৎ · privacy ও আস্থা ভঙ্গ · Professional ethics বলে প্রকাশ ও সংশোধন।</div></div></div>
-    <div class="flip r" onclick="this.classList.toggle('on')" style="--i:5"><div class="in"><div class="face" style="border-color:var(--a)"><h3>কেস স্টাডি</h3>Nusrat-এর scenario কোন ধরনের?</div><div class="face bk"><h3>✓ উত্তর</h3>Breach cover-up-এর মতোই: data অপব্যবহার + চুপ থাকার চাপ।</div></div></div>
-  </div>
-</section>
-
-<!-- 24 EXAM SCENARIO -->
-<section class="slide" data-t="পরীক্ষার Scenario">
-  <div class="chip r" style="color:var(--r);border-color:var(--r)">Case Study</div>
-  <h2 class="t r">Nusrat-এর পরিস্থিতি (flow)</h2>
-  <div class="flow r" style="gap:10px">
-    <div class="node"> University-র জন্য online learning platform</div><span class="arrow">➜</span>
-    <div class="node a"> Security review-এ Nusrat দেখল: name, email, academic records, login activity সংগ্রহ হচ্ছে</div><span class="arrow">➜</span>
-    <div class="node r2"> Team এগুলো <b>testing-এ</b> ব্যবহার করছে — <b>না জানিয়ে, consent ছাড়া</b></div>
-  </div>
-  <div class="down r">↓</div>
-  <div class="node r" style="font-size:21px;border-color:var(--r)"> Project Manager: "Raise করো না — testing বদলালে release দেরি হবে।<br><span class="mu">Info শুধু internal ব্যবহার হচ্ছে; platform হাজার হাজার student-কে উপকার করবে।</span>"</div>
-  <div class="down r">↓</div>
-  <div class="grid2 r" style="gap:20px">
-    <div class="node r2" style="font-size:21px"> চুপ থাকা<br><span class="mu" style="font-size:17px">release সময়মতো · কিন্তু privacy লঙ্ঘন চলবে</span></div>
-    <div class="node g" style="font-size:21px"> Report করা + দরকারে delay<br><span class="mu" style="font-size:17px">সামান্য দেরি · কিন্তু ethical ও legal</span></div>
-  </div>
-</section>
-
-<!-- 25 Q1 -->
-<section class="slide" data-t="Q1 উত্তর">
-  <div class="chip r">Answer 1 · <span class="en">4 marks</span></div>
-  <h2 class="t r en">Q1. Identify two ethical issues</h2>
-  <div class="card a r l ans en"><span class="mark">2</span><h3><span class="num">1</span>Violation of privacy &amp; lack of informed consent</h3>
-    <p>Students' <span class="k">names, email addresses, academic records and login activity</span> are used for testing <span class="k">without informing them or obtaining consent</span>. This violates their right to privacy and data-protection principles and laws (ICT Act 2006, Digital Security Act 2018).</p></div>
-  <div class="card t r l ans en" style="--i:3"><span class="mark">2</span><h3><span class="num">2</span>Concealment of wrongdoing &amp; conflict of duties</h3>
-    <p>The project manager asks Nusrat to <span class="k">stay silent</span> to protect the release date, putting deadlines above <span class="k">honesty, integrity and accountability</span>. Her loyalty to the employer conflicts with her duty to the students whose data is misused. Silence would make her complicit.</p></div>
-  <div class="call r en" style="font-size:19px"><b>Tip:</b> Each issue = name it + use words from the scenario + explain why it is wrong.</div>
-</section>
-
-<!-- 26 Q2 DEONTOLOGY -->
-<section class="slide" data-t="Q2 Deontology">
-  <div class="chip r">Answer 2 · <span class="en">7 marks · part 1</span></div>
-  <h2 class="t r en">Q2(a). Deontological analysis </h2>
-  <div class="grid2" style="gap:20px;flex:1">
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="card a r l ans en"><h3>Framework</h3><p>Deontology judges an action by whether it follows <span class="k">moral duties and rules</span>, regardless of the outcome.</p></div>
-      <div class="card r l ans en"><h3>Kant's Categorical Imperative</h3><p>If everyone used personal data without consent, trust in digital systems would collapse — so the rule <span class="k">cannot be universalised</span>.</p></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="card t r rt ans en"><h3>Nusrat's duties</h3><p>To <span class="k">respect students' privacy</span>, to be <span class="k">honest</span>, and to take <span class="k">responsibility</span> for the system she helps build.</p></div>
-      <div class="card g r rt ans en"><h3>Manager's arguments fail</h3><p>"Internal only" and "benefits thousands" are <span class="k">outcome-based</span>; they cannot override a duty. The rule is not broken because the result is good.</p></div>
-    </div>
-  </div>
-  <div class="call g r en"><b>Verdict:</b> Nusrat <b>must report</b> the misuse, even if the release is delayed.</div>
-</section>
-
-<!-- 27 Q2 UTILITARIAN -->
-<section class="slide" data-t="Q2 Utilitarianism">
-  <div class="chip r">Answer 2 · <span class="en">7 marks · part 2</span></div>
-  <h2 class="t r en">Q2(b). Utilitarian analysis </h2>
-  <p class="r en mu" style="font-size:20px">Which action gives the <b>greatest good for the greatest number</b>? Weigh benefits against harms.</p>
-  <div class="grid2" style="gap:20px;flex:1">
-    <div class="card r2 r l ans en"><h3>Staying silent</h3>
-      <p><span class="k">Benefit:</span> on-time launch; students benefit sooner; no delay cost.</p>
-      <p style="margin-top:6px"><span class="k" style="color:var(--r)">Harm:</span> real data in testing → insider misuse &amp; breach risk; legal penalties; lost trust &amp; reputation; leaked data is <span class="k">permanent</span>.</p></div>
-    <div class="card g r rt ans en"><h3>Reporting &amp; fixing</h3>
-      <p><span class="k" style="color:var(--r)">Cost:</span> a <span class="k">temporary</span> delay.</p>
-      <p style="margin-top:6px"><span class="k">Fix:</span> use anonymised / dummy data or obtain consent. Protects the very students the platform serves; builds long-term trust.</p></div>
-  </div>
-  <div class="call g r en"><b>Verdict:</b> harms of silence are larger, longer-lasting and hit the same users ➜ net benefit favours <b>reporting</b>.</div>
-</section>
-
-<!-- 28 Q2 CONCLUSION -->
-<section class="slide" data-t="Q2 সিদ্ধান্ত">
-  <div class="chip r">Answer 2 · <span class="en">conclusion &amp; recommendation</span></div>
-  <h2 class="t r en">Q2(c). Conclusion — both frameworks agree</h2>
-  <div class="flow r en" style="gap:10px">
-    <div class="node a"> Deontology<br><span class="mu" style="font-size:17px">duty to privacy &amp; honesty</span></div><span class="arrow">➜</span>
-    <div class="node g" style="flex:1.3;font-weight:600">Nusrat should REPORT</div><span class="arrow" style="transform:scaleX(-1)">➜</span>
-    <div class="node t"> Utilitarianism<br><span class="mu" style="font-size:17px">harm of silence &gt; cost of delay</span></div>
-  </div>
-  <div class="down r">↓</div>
-  <h3 class="r en mu">Recommended steps</h3>
-  <div class="flow r en" style="gap:8px">
-    <div class="node">1 · Raise internally<br><span class="mu" style="font-size:16px">manager's superior / compliance</span></div><span class="arrow">➜</span>
-    <div class="node">2 · Propose fix<br><span class="mu" style="font-size:16px">anonymised data or consent</span></div><span class="arrow">➜</span>
-    <div class="node">3 · Delay release <b>if necessary</b></div><span class="arrow">➜</span>
-    <div class="node r2">4 · Escalate if ignored</div>
-  </div>
-  <div class="call r en">A short delay is a far smaller cost than violating a duty of privacy and risking <b>permanent</b> harm.</div>
-</section>
-
-<!-- 29 Q3 -->
-<section class="slide" data-t="Q3 উত্তর">
-  <div class="chip r">Answer 3 · <span class="en">4 marks</span></div>
-  <h2 class="t r en">Q3. One ICT-ethics principle</h2>
-  <div class="card a r ans en" style="padding:22px 26px"><h3>Principle: Respect for Privacy (with informed consent)</h3>
-    <p>Computer ethics and the <span class="k">ACM Code ("respect privacy")</span> require professionals not to collect, use or share user data without consent, and to keep it secure.</p></div>
-  <div class="grid2" style="gap:16px">
-    <div class="card r l ans en"><h3>Why it applies</h3><p>Names, emails, academic records and login activity are used <span class="k">without the students' knowledge or permission</span>.</p></div>
-    <div class="card r rt ans en"><h3>Justification</h3><p><span class="k">Asymmetric power:</span> students can't see how data is handled — they depend on engineers. Backed by ICT Act 2006 &amp; DSA 2018.</p></div>
-  </div>
-  <div class="call r en"><b>Conclusion:</b> Nusrat is obliged to act; silence for a deadline would also break the principle of <b>responsibility</b> — report flaws and risks even when it is costly.</div>
-</section>
-
-<!-- 30 EXAM STRATEGY -->
-<section class="slide" data-t="পরীক্ষার কৌশল">
-  <div class="chip r" style="color:var(--g);border-color:var(--g)">পরীক্ষার কৌশল</div>
-  <h2 class="t r">৩০ মিনিট · ১৫ নম্বর — সময় ভাগ</h2>
-  <div style="display:flex;flex-direction:column;gap:12px">
-    <div class="r"><div style="display:flex;justify-content:space-between;font-size:20px"><span>Q1 · দুটি issue</span><span class="hl">৪ নম্বর · ~৬ মিনিট</span></div><div class="pb"><i style="--w:20%"></i></div></div>
-    <div class="r"><div style="display:flex;justify-content:space-between;font-size:20px"><span>Q2 · Deontology + Utilitarianism</span><span class="hl">৭ নম্বর · ~১৬ মিনিট</span></div><div class="pb"><i style="--w:53%"></i></div></div>
-    <div class="r"><div style="display:flex;justify-content:space-between;font-size:20px"><span>Q3 · একটি ICT principle</span><span class="hl">৪ নম্বর · ~৬ মিনিট</span></div><div class="pb"><i style="--w:20%"></i></div></div>
-  </div>
-  <div class="grid3">
-    <div class="card a r"><h3>১ · Framework-এর নাম লেখো</h3><p>"Under Deontology …" — কখনো শুধু "আমার মনে হয়" নয়।</p></div>
-    <div class="card t r"><h3>২ · Scenario-র শব্দ ব্যবহার</h3><p>names, email, academic records, login activity, project manager।</p></div>
-    <div class="card g r"><h3>৩ · Conclusion দাও</h3><p>Report করবে কি না + দরকারে delay — স্পষ্ট করে।</p></div>
-  </div>
-  <div class="call r"><b>Deontology = নিয়ম, ফলাফল না।</b> Utilitarianism = ফলাফলের হিসাব।</div>
-</section>
-
-<!-- 31 QUIZ -->
-<section class="slide" data-t="Quiz" data-hook="quiz">
-  <div class="chip r">নিজেকে যাচাই করো</div>
-  <h2 class="t r">Mini Quiz</h2>
-  <div class="qbar r"><i id="qb"></i></div>
-  <div id="qbox" class="r" style="flex:1"></div>
-</section>
-
-<!-- 32 END -->
-<section class="slide title" data-t="শেষ">
-  <div class="kicker r">The Fork in the Machine</div>
-  <h1 class="r" style="font-size:54px">এখন তুমি শুধু "কী" নয়,<br><span>"কেন"</span>ও বলতে পারো।</h1>
-  <p class="r mu" style="font-size:25px;max-width:900px">Trolley আর release dilemma ভাবো। Framework জানার পর তোমার উত্তর কি বদলেছে? যা-ই হোক — যুক্তিটা framework দিয়ে দেখাও।</p>
-  <div class="r" style="font-size:44px"> পরীক্ষার জন্য শুভকামনা</div>
-</section>
-
-<div id="grain"></div>
+    <footer class="footer">
+      <div class="footer-brand">
+        <a class="brand" href="#top"><img src="favicon.svg" alt=""><span>SE441</span></a>
+        <p>An unofficial study hub for Software Engineering Professional Ethics. Not affiliated with any university.</p>
+      </div>
+      <div class="footer-cols">
+        <div><h5>Library</h5><a data-go="slides">Slides</a><a data-go="videos">Videos</a><a data-go="notes">Notes</a><a data-go="sirs">Sir's Slides</a></div>
+        <div><h5>Hub</h5><a data-go="path">Study path</a><a data-go="library">All shelves</a><a href="decks/ethics/">Ethics deck</a></div>
+      </div>
+    </footer>
+    <p class="copyright">© <span id="yr"></span> SE 441 Study Hub. Built among the stars.</p>
+  </section>
 </div>
 
-<div id="toc"></div>
-<div id="ui"><button id="pv" title="Previous">‹</button><span id="ct">1 / 32</span><button id="nx" title="Next">›</button><button id="fs" title="Fullscreen">⛶</button></div>
+<!-- viewer modal (video / PDF) -->
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal-box" data-lenis-prevent>
+    <div class="modal-head">
+      <h3 id="mTitle"></h3>
+      <div class="modal-actions">
+        <a class="btn btn-ghost" id="mOpen" target="_blank" rel="noopener">Open in new tab</a>
+        <a class="btn btn-ghost" id="mDl" download hidden>Download</a>
+        <button class="btn btn-ghost" id="mClose" type="button">Close</button>
+      </div>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
 
+<!-- data: edit this file to add content (see GUIDE.md) -->
+<script src="data/library.js"></script>
+
+<!-- ===================== UI (library, modal, reveals) ===================== -->
 <script>
 (function(){
-var stage=document.getElementById('stage'),slides=[].slice.call(document.querySelectorAll('.slide')),cur=-1;
-function fit(){var s=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform='translate('+((innerWidth-1280*s)/2)+'px,'+((innerHeight-720*s)/2)+'px) scale('+s+')'}
-addEventListener('resize',fit);fit();
+  'use strict';
+  var L = window.LIBRARY || {categories:[]};
+  var cats = L.categories || [];
+  var byId = {}; cats.forEach(function(c){ byId[c.id]=c; });
+  var $ = function(s,r){ return (r||document).querySelector(s); };
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* auto stagger index */
-slides.forEach(function(sl){var i=0;[].forEach.call(sl.querySelectorAll('.r'),function(el){if(!el.style.getPropertyValue('--i')){el.style.setProperty('--i',i)}i++})});
+  /* ---------- icons ---------- */
+  var P = {
+    slides:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 21h8M12 16v5"/>',
+    play:'<circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/>',
+    notes:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
+    present:'<rect x="2" y="4" width="20" height="13" rx="2"/><path d="m8 21 4-4 4 4M7 9h6M7 12h4"/>',
+    quiz:'<circle cx="12" cy="12" r="10"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/>',
+    paper:'<path d="M5 3h14v18H5z"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    arrow:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+    dl:'<path d="M12 3v12m-5-5 5 5 5-5M4 21h16"/>',
+    ext:'<path d="M14 4h6v6M20 4 10 14M18 14v6H4V6h6"/>'
+  };
+  function svg(name,extra){ return '<svg class="i" viewBox="0 0 24 24" '+(extra||'')+'>'+(P[name]||P.notes)+'</svg>'; }
 
-/* squares */
-(function(){var b=document.getElementById('sqs'),h='';for(var i=0;i<30;i++){var x=(Math.random()*800-400)|0,y=(Math.random()*500-250)|0,r=(Math.random()*180-90)|0,s=(0.5+Math.random()*1.1).toFixed(2);h+='<div class="sq" style="--x:'+x+'px;--y:'+y+'px;--rot:'+r+'deg;--s:'+s+'"></div>'}b.innerHTML=h})();
+  /* ---------- item helpers ---------- */
+  function ytId(u){
+    if(!u) return null;
+    if(/^[\w-]{11}$/.test(u)) return u;
+    try{
+      var x = new URL(u);
+      if(x.hostname.indexOf('youtu.be')>-1) return x.pathname.slice(1,12);
+      if(x.searchParams.get('v')) return x.searchParams.get('v');
+      var m = x.pathname.match(/\/(embed|shorts|live)\/([\w-]{11})/);
+      if(m) return m[2];
+    }catch(e){}
+    return null;
+  }
+  function kind(it){ return it.youtube ? 'video' : it.file ? 'pdf' : 'link'; }
+  var KIND_LABEL = {video:'Video', pdf:'PDF', link:'Deck'};
 
-/* counters */
-function runCounters(sl){[].forEach.call(sl.querySelectorAll('[data-count]'),function(el){var end=+el.getAttribute('data-count'),t0=performance.now(),D=1800;(function f(n){var k=Math.min(1,(n-t0)/D),e=1-Math.pow(1-k,3);el.textContent=Math.round(end*e).toLocaleString('en-US');if(k<1)requestAnimationFrame(f)})(t0)})}
-function resetCounters(sl){[].forEach.call(sl.querySelectorAll('[data-count]'),function(el){el.textContent='0'})}
+  function cardHTML(cat, it, idx, showBadge){
+    var k = kind(it), id = cat.id+':'+idx, cover='', actions='', meta='';
+    if(k==='video'){
+      var v = ytId(it.youtube);
+      cover = '<div class="cover" data-open="'+id+'">'+(showBadge?'<span class="badge">Video</span>':'')+
+        (v?'<img class="th" loading="lazy" alt="" src="https://i.ytimg.com/vi/'+esc(v)+'/hqdefault.jpg" onerror="this.style.display=\'none\'">':'')+
+        '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>';
+      actions = '<button class="btn btn-primary" type="button" data-open="'+id+'">Play</button>'+
+                (v?'<a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+esc(v)+'">YouTube '+svg('ext')+'</a>':'');
+      meta = it.channel ? esc(it.channel) : '';
+    }else if(k==='pdf'){
+      cover = '<div class="cover" data-open="'+id+'">'+(showBadge?'<span class="badge">'+esc(cat.title)+'</span>':'<span class="badge">PDF</span>')+
+        '<div class="doc">'+svg(cat.icon||'notes')+'<span>'+(it.pages?it.pages+' pages':'PDF')+'</span></div></div>';
+      actions = '<button class="btn btn-primary" type="button" data-open="'+id+'">Read</button>'+
+                '<a class="btn btn-outline" href="'+esc(it.file)+'" download>Download '+svg('dl')+'</a>';
+      meta = it.pages ? it.pages+' pages · PDF' : 'PDF';
+    }else{
+      cover = '<a class="cover deck" href="'+esc(it.href)+'">'+(showBadge?'<span class="badge">Deck</span>':'<span class="badge">Interactive</span>')+'<img src="favicon.svg" alt=""></a>';
+      actions = '<a class="btn btn-primary" href="'+esc(it.href)+'">Open '+svg('arrow','style="stroke-width:2"')+'</a>';
+      meta = it.meta ? esc(it.meta) : '';
+    }
+    var tags = (it.tags&&it.tags.length) ? '<div class="tags">'+it.tags.map(function(t){return '<span>'+esc(t)+'</span>';}).join('')+'</div>' : '';
+    return '<article class="item" style="--i:'+idx+'">'+cover+'<div class="i-body"><h4>'+esc(it.title)+'</h4>'+
+      (it.description?'<p>'+esc(it.description)+'</p>':'')+(meta?'<div class="i-meta">'+meta+'</div>':'')+tags+'<div class="i-act">'+actions+'</div></div></article>';
+  }
 
-/* trolley */
-var T={lever:false,raf:0};
-var trolley=document.getElementById('trolley'),pS=document.getElementById('pStraight'),pW=document.getElementById('pSwitch');
-function place(path,len){var p=path.getPointAtLength(len),q=path.getPointAtLength(Math.min(path.getTotalLength(),len+2));var a=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;trolley.setAttribute('transform','translate('+p.x+','+p.y+') rotate('+a+')')}
-function trolleyReset(){cancelAnimationFrame(T.raf);place(T.lever?pW:pS,0);[].forEach.call(document.querySelectorAll('.victim'),function(v){v.classList.remove('hit')});setOut()}
-function setOut(txt){document.getElementById('tout').innerHTML=txt||(T.lever?'Lever টানা হয়েছে — ট্রেন এবার <b>১ জনের</b> দিকে যাবে।':'Lever না টানলে ট্রেন সোজা <b>৫ জনের</b> দিকে যাবে।')}
-function trolleyRun(){cancelAnimationFrame(T.raf);trolleyReset();var p=T.lever?pW:pS,L=p.getTotalLength(),t0=performance.now(),D=3600;(function f(n){var k=Math.min(1,(n-t0)/D);place(p,L*k*k*(3-2*k)*0.0+L*k);if(k<1){T.raf=requestAnimationFrame(f)}else{
- var vs=T.lever?document.querySelectorAll('#vic1 .victim'):document.querySelectorAll('#vic5 .victim');[].forEach.call(vs,function(v){v.classList.add('hit')});
- setOut(T.lever?'ফল: <b>১ জন</b> মারা গেল, <b>৫ জন বাঁচল</b> — Utilitarian হিসাব।':'ফল: <b>৫ জন</b> মারা গেল — তুমি কিছু "করোনি", কিন্তু ফল?')}})(t0)}
-document.getElementById('bRun').onclick=trolleyRun;
-document.getElementById('bLever').onclick=function(){T.lever=!T.lever;document.getElementById('lever').style.transform='rotate('+(T.lever?'-40deg':'0deg')+')';this.textContent=T.lever?' Lever ফেরাও':' Lever টানো';trolleyReset()};
-trolleyReset();
+  /* ---------- tiles + panel ---------- */
+  var active = null, query = '';
+  var tilesEl = $('#tiles'), itemsEl = $('#items'), pTitle = $('#pTitle'), pBlurb = $('#pBlurb'), qEl = $('#q');
 
-/* quiz */
-var Q=[
-{q:'"Legal but Unethical" মানে কী?',o:['আইনসম্মত কাজ সবসময় নৈতিক','আইনে নিষেধ নেই, তবু নৈতিকভাবে ভুল হতে পারে','আইন আর নীতি একই','নীতি আইনের চেয়ে নিচু'],a:1,e:'আইন হলো ন্যূনতম baseline এবং প্রযুক্তির সাথে পিছিয়ে থাকে।'},
-{q:'Deontology-র মূল প্রশ্ন কোনটি?',o:['কীসে সবচেয়ে বেশি মানুষের উপকার?','আমার চূড়ান্ত কর্তব্য কী?','একজন excellent engineer কী করত?','আইন কী বলে?'],a:1,e:'Deontology = Duty। ফল নয়, নিয়ম ও কর্তব্য।'},
-{q:'Manager বলল "শুধু internal ব্যবহার, হাজার student উপকার পাবে"। Deontology-র জবাব?',o:['ঠিক আছে, ফল ভালো','ফল দিয়ে নিয়ম ভাঙা যায় না — consent ছাড়া data ব্যবহার করা যাবে না','Delay করলে লাভ কমবে','আইনে লেখা নেই'],a:1,e:'"Internal only" ও "benefit" — দুটোই outcome-ভিত্তিক যুক্তি।'},
-{q:'Utilitarian দৃষ্টিতে Nusrat-এর report করার প্রধান কারণ?',o:['Manager-কে শাস্তি দেওয়া','Silence-এর harm (breach, আইনি শাস্তি, আস্থা নষ্ট, স্থায়ী ক্ষতি) delay-র চেয়ে বেশি','Platform বন্ধ করা','Rule বলে'],a:1,e:'Delay ক্ষণস্থায়ী; leaked data স্থায়ী।'},
-{q:'"Asymmetric power" বলতে বোঝায়?',o:['Engineer কম বেতন পায়','Engineer code বোঝে, user বোঝে না — তাই বেশি দায়িত্ব','User-এর হাতে বেশি ক্ষমতা','দুই পক্ষ সমান'],a:1,e:'জ্ঞানের ব্যবধান = higher standard of duty।'},
-{q:'পরীক্ষায় "I just felt like it" লিখলে?',o:['পূর্ণ নম্বর','অর্ধেক নম্বর','Failing grade — framework দিয়ে justify করতে হবে','নম্বর কাটা যাবে না'],a:2,e:'Anchor of Justification: যুক্তি স্বচ্ছ framework-ভিত্তিক হতে হবে।'},
-{q:'Virtue Ethics-এর মূল প্রশ্ন?',o:['কোন নিয়ম ভাঙা যাবে না?','কীসে বেশি লাভ?','একজন excellent engineer কী করত?','কার অধিকার ক্ষুণ্ণ?'],a:2,e:'Virtue = Character, Habit, Intent।'}];
-var qi=0,score=0,answered=false;
-function renderQ(){var box=document.getElementById('qbox'),d=Q[qi];document.getElementById('qb').style.width=(qi/Q.length*100)+'%';
- if(!d){document.getElementById('qb').style.width='100%';box.innerHTML='<div class="card a" style="text-align:center;padding:40px"><div style="font-size:60px"></div><h3 style="font-size:34px;margin:10px 0">স্কোর: '+score+' / '+Q.length+'</h3><p>'+(score>=6?'দারুণ! তুমি প্রস্তুত।':score>=4?'ভালো — Q2 স্লাইডগুলো আরেকবার দেখে নাও।':'Framework স্লাইড (৮–১৬) আবার দেখো।')+'</p><button class="btn" id="qr" style="margin-top:14px">↻ আবার</button></div>';document.getElementById('qr').onclick=function(){qi=0;score=0;renderQ()};return}
- answered=false;var h='<h3 style="font-size:26px;margin:6px 0 8px">'+(qi+1)+'. '+d.q+'</h3>';d.o.forEach(function(t,i){h+='<button class="opt" data-i="'+i+'">'+t+'</button>'});h+='<div id="qe" class="call t" style="display:none;margin-top:8px;font-size:19px;padding:8px 16px"></div><div style="text-align:right;margin-top:8px"><button class="btn" id="qn" style="display:none">পরের প্রশ্ন ›</button></div>';box.innerHTML=h;
- [].forEach.call(box.querySelectorAll('.opt'),function(b){b.onclick=function(){if(answered)return;answered=true;var i=+b.getAttribute('data-i');if(i===d.a){b.classList.add('ok');score++}else{b.classList.add('no');box.querySelectorAll('.opt')[d.a].classList.add('ok')}var e=document.getElementById('qe');e.style.display='block';e.textContent=d.e;var n=document.getElementById('qn');n.style.display='inline-block';n.onclick=function(){qi++;renderQ()}}})}
-function quizStart(){qi=0;score=0;renderQ()}
+  function renderTiles(){
+    tilesEl.innerHTML = cats.map(function(c){
+      var n = (c.items||[]).length;
+      var count = c.soon ? 'Soon' : n+(n===1?' item':' items');
+      return '<button class="tile'+(c.id===active&&!query?' active':'')+'" type="button" data-cat="'+esc(c.id)+'"'+(c.soon?' disabled':'')+' aria-pressed="'+(c.id===active&&!query)+'">'+
+        '<span class="t-ico">'+svg(c.icon)+'</span><span class="t-count">'+count+'</span>'+
+        '<h3>'+esc(c.title)+'</h3><p>'+esc(c.blurb||'')+'</p></button>';
+    }).join('');
+  }
+  function renderItems(){
+    var html = '';
+    if(query){
+      var q = query.toLowerCase(), found = 0;
+      cats.forEach(function(c){
+        (c.items||[]).forEach(function(it,idx){
+          var hay = (it.title+' '+(it.description||'')+' '+(it.channel||'')+' '+(it.tags||[]).join(' ')+' '+c.title).toLowerCase();
+          if(hay.indexOf(q)>-1){ html += cardHTML(c,it,found++,true); }
+        });
+      });
+      pTitle.textContent = found+(found===1?' result':' results');
+      pBlurb.textContent = 'for “'+query+'” across every shelf';
+      if(!found) html = '<div class="empty">Nothing matches “'+esc(query)+'”. Try a shorter word, like <code>ethics</code> or <code>week 2</code>.</div>';
+    }else{
+      var c = byId[active];
+      if(!c){ html=''; }
+      else{
+        pTitle.textContent = c.title; pBlurb.textContent = c.blurb || '';
+        html = (c.items||[]).map(function(it,idx){ return cardHTML(c,it,idx,false); }).join('');
+        if(!html) html = '<div class="empty">Nothing on this shelf yet.<br>Add entries in <code>data/library.js</code>. The guide shows how.</div>';
+      }
+    }
+    itemsEl.innerHTML = html;
+  }
+  function select(id, opts){
+    if(!byId[id] || byId[id].soon) return;
+    active = id; query = ''; qEl.value = '';
+    renderTiles(); renderItems();
+    if(!(opts&&opts.quiet)) try{ history.replaceState(null,'','#'+id); }catch(e){}
+  }
 
-/* navigation */
-var hooks={trolley:function(){trolleyReset()},quiz:quizStart};
-function go(n){n=Math.max(0,Math.min(slides.length-1,n));if(n===cur)return;
- if(cur>=0){resetCounters(slides[cur])}
- slides.forEach(function(s,i){s.classList.toggle('active',i===n);s.classList.toggle('prev',i<n)});
- cur=n;var sl=slides[n];runCounters(sl);var h=sl.getAttribute('data-hook');if(h&&hooks[h])hooks[h]();
- document.getElementById('ct').textContent=(n+1)+' / '+slides.length;
- document.getElementById('bar').style.width=((n+1)/slides.length*100)+'%';
- document.getElementById('toc').textContent=sl.getAttribute('data-t')||'';
- try{history.replaceState(null,'','#'+(n+1))}catch(e){}}
-function next(){go(cur+1)}function prev(){go(cur-1)}
-document.getElementById('nx').onclick=next;document.getElementById('pv').onclick=prev;
-document.getElementById('fs').onclick=function(){if(document.fullscreenElement){document.exitFullscreen()}else{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}};
-addEventListener('keydown',function(e){var k=e.key;if(k==='ArrowRight'||k==='ArrowDown'||k===' '||k==='PageDown'){e.preventDefault();next()}else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();prev()}else if(k==='Home'){go(0)}else if(k==='End'){go(slides.length-1)}else if(k==='f'||k==='F'){document.getElementById('fs').click()}});
-var sx=0,sy=0;addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
-addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)){dx<0?next():prev()}},{passive:true});
-var start=parseInt((location.hash||'').slice(1),10);go(isNaN(start)?0:start-1);
+  /* ---------- scrolling ---------- */
+  function scrollToId(id){
+    var el = document.getElementById(id); if(!el) return;
+    var lenis = window.__lenis;
+    if(lenis) lenis.scrollTo(el,{offset:-10});
+    else el.scrollIntoView({behavior: reduce?'auto':'smooth', block:'start'});
+  }
+  function go(id){
+    if(id==='library'||id==='path'||id==='about'){ scrollToId(id); return; }
+    if(byId[id] && !byId[id].soon){ select(id); scrollToId('library'); }
+  }
+  document.addEventListener('click',function(e){
+    var a = e.target.closest('[data-go]');
+    if(a){ e.preventDefault(); go(a.getAttribute('data-go')); return; }
+    var t = e.target.closest('.tile[data-cat]');
+    if(t){ select(t.getAttribute('data-cat')); return; }
+    var o = e.target.closest('[data-open]');
+    if(o){ e.preventDefault(); openItem(o.getAttribute('data-open')); }
+  });
+  qEl.addEventListener('input',function(){ query = qEl.value.trim(); renderTiles(); renderItems(); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/' && document.activeElement!==qEl && !modalOpen()){ e.preventDefault(); scrollToId('library'); qEl.focus(); }
+  });
+
+  /* ---------- modal ---------- */
+  var modal = $('#modal'), mTitle = $('#mTitle'), mBody = $('#mBody'), mOpen = $('#mOpen'), mDl = $('#mDl'), lastFocus = null;
+  function modalOpen(){ return !modal.hidden; }
+  function openModal(title, bodyHTML, openHref, dlHref){
+    lastFocus = document.activeElement;
+    mTitle.textContent = title; mBody.innerHTML = bodyHTML;
+    mOpen.href = openHref; mDl.hidden = !dlHref; if(dlHref) mDl.href = dlHref;
+    modal.hidden = false; document.documentElement.style.overflow='hidden';
+    if(window.__lenis) window.__lenis.stop();
+    $('#mClose').focus();
+  }
+  function closeModal(){
+    modal.hidden = true; mBody.innerHTML = '';            /* removing the iframe stops playback */
+    document.documentElement.style.overflow='';
+    if(window.__lenis) window.__lenis.start();
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  $('#mClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && modalOpen()) closeModal(); });
+
+  function openItem(ref){
+    var p = ref.split(':'), c = byId[p[0]], it = c && c.items[+p[1]]; if(!it) return;
+    var k = kind(it);
+    if(k==='video'){
+      var v = ytId(it.youtube); if(!v){ window.open(it.youtube,'_blank'); return; }
+      var start = parseInt(it.start,10) > 0 ? '&start='+parseInt(it.start,10) : '';
+      openModal(it.title,
+        '<iframe class="yt" src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v)+'?rel=0&autoplay=1'+start+'" title="'+esc(it.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+        'https://www.youtube.com/watch?v='+v, null);
+    }else if(k==='pdf'){
+      var canInline = navigator.pdfViewerEnabled !== false;
+      openModal(it.title,
+        canInline ? '<iframe class="pdf" src="'+esc(it.file)+'#view=FitH" title="'+esc(it.title)+'"></iframe>'
+                  : '<div class="modal-note">This browser cannot preview PDFs inside a page.<br>Open it in a new tab or download it instead.<br><a class="btn btn-primary" target="_blank" rel="noopener" href="'+esc(it.file)+'">Open PDF</a><a class="btn btn-outline" download href="'+esc(it.file)+'">Download</a></div>',
+        it.file, it.file);
+    }else if(it.href){ location.href = it.href; }
+  }
+
+  /* ---------- hero stats + dock ---------- */
+  function count(id){ return byId[id] ? (byId[id].items||[]).length : 0; }
+  function countUp(el,to){
+    if(reduce||!to){ el.textContent=to; return; }
+    var t0=performance.now(), D=1100;
+    (function f(n){ var k=Math.min(1,(n-t0)/D), e=1-Math.pow(1-k,3); el.textContent=Math.round(to*e); if(k<1) requestAnimationFrame(f); })(t0);
+  }
+  var stats = [['slides','deck','decks'],['videos','video','videos'],['notes','note','notes'],['sirs',"lecturer deck","lecturer decks"]];
+  $('#heroStats').innerHTML = stats.filter(function(s){return count(s[0])>0;}).map(function(s){
+    var n=count(s[0]); return '<span class="chip"><b data-n="'+n+'">0</b> '+(n===1?s[1]:s[2])+'</span>';
+  }).join('');
+  [].forEach.call(document.querySelectorAll('#heroStats b'),function(b){ setTimeout(function(){ countUp(b,+b.getAttribute('data-n')); },500); });
+
+  var dockSpec = [['slides','Jump back in'],['videos','Watch next'],['notes','Read next']];
+  $('#dock').innerHTML = dockSpec.map(function(d){
+    var c = byId[d[0]], it = c && c.items && c.items[0]; if(!it) return '';
+    var meta = it.meta || (it.channel) || (it.pages ? it.pages+' pages · PDF' : '');
+    var attr = kind(it)==='link' ? 'href="'+esc(it.href)+'"' : 'data-open="'+c.id+':0"';
+    var tag = kind(it)==='link' ? 'a' : 'button type="button"';
+    var close = kind(it)==='link' ? 'a' : 'button';
+    return '<'+tag+' class="dock-card" '+attr+'><span class="dock-k">'+d[1]+'</span><span class="dock-t">'+esc(it.title)+'</span><span class="dock-m">'+esc(meta)+'</span>'+svg('arrow','style="stroke-width:2"')+'</'+close+'>';
+  }).join('');
+
+  /* ---------- scroll reveal ---------- */
+  var revealEls = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if(reduce || !('IntersectionObserver' in window)){ revealEls.forEach(function(el){el.classList.add('in');}); }
+  else{
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); },{threshold:0.18,rootMargin:'0px 0px -8% 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- effects toggle ---------- */
+  var fxBtn = $('#fxBtn');
+  function fxOn(){ try{ return localStorage.getItem('hub-fx')!=='off'; }catch(e){ return true; } }
+  function applyFx(){
+    var on = fxOn();
+    document.documentElement.classList.toggle('fx-off',!on);
+    fxBtn.textContent = 'Effects: '+(on?'On':'Off'); fxBtn.setAttribute('aria-pressed',on);
+    window.dispatchEvent(new CustomEvent('hub-fx',{detail:on}));
+  }
+  fxBtn.addEventListener('click',function(){ try{ localStorage.setItem('hub-fx', fxOn()?'off':'on'); }catch(e){} applyFx(); });
+  window.__fxOn = fxOn;
+
+  /* ---------- init ---------- */
+  $('#yr').textContent = new Date().getFullYear();
+  var first = cats.filter(function(c){ return !c.soon && (c.items||[]).length; })[0] || cats[0];
+  active = first ? first.id : null;
+  var h = (location.hash||'').replace('#','');
+  if(byId[h] && !byId[h].soon){ active = h; setTimeout(function(){ scrollToId('library'); }, 700); }
+  renderTiles(); renderItems(); applyFx();
+})();
+</script>
+
+<!-- ===================== Lenis (smooth scroll) ===================== -->
+<script type="module">
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  try {
+    const { default: Lenis } = await import('https://unpkg.com/lenis@1.3.23/dist/lenis.mjs');
+    const lenis = new Lenis({ duration: 1.15, smoothWheel: true, touchMultiplier: 1.5 });
+    window.__lenis = lenis;
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  } catch (e) { console.warn('[hub] smooth scroll unavailable', e); }
+}
+</script>
+
+<!-- ===================== The planet (WebGL) ===================== -->
+<script type="module">
+/* Three.js r0.143 is pinned on purpose: the shader injection below relies on its chunk names
+   and on WebGL1Renderer / outputEncoding / sRGBEncoding. */
+const ASSET_BASE_URL = 'https://api.getlayers.ai/storage/v1/object/public/public/assets/ascend-d9857ad1f2';
+const PLANET_GLB = ASSET_BASE_URL + '/planet.glb';
+const PLANET_LIGHTS_GLB = ASSET_BASE_URL + '/planet-lights.glb';
+const PLANET_CLOUDS_PNG = ASSET_BASE_URL + '/planet-clouds.png';
+
+(async function () {
+  const canvas = document.getElementById('planet');
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* no WebGL at all: leave the dark page as is */
+  try {
+    const t = document.createElement('canvas');
+    if (!(t.getContext('webgl') || t.getContext('experimental-webgl'))) throw new Error('no webgl');
+  } catch (e) { root.classList.add('no-3d'); return; }
+
+  let THREE, EC, RP, UB, SP, GCS, CS, GL, DR, OC;
+  try {
+    [THREE, EC, RP, UB, SP, GCS, CS, GL, DR, OC] = await Promise.all([
+      import('three'),
+      import('three/examples/jsm/postprocessing/EffectComposer.js'),
+      import('three/examples/jsm/postprocessing/RenderPass.js'),
+      import('three/examples/jsm/postprocessing/UnrealBloomPass.js'),
+      import('three/examples/jsm/postprocessing/ShaderPass.js'),
+      import('three/examples/jsm/shaders/GammaCorrectionShader.js'),
+      import('three/examples/jsm/shaders/CopyShader.js'),
+      import('three/examples/jsm/loaders/GLTFLoader.js'),
+      import('three/examples/jsm/loaders/DRACOLoader.js'),
+      import('three/examples/jsm/controls/OrbitControls.js'),
+    ]);
+  } catch (e) { console.warn('[hub] 3D libraries failed to load', e); root.classList.add('no-3d'); return; }
+  const { EffectComposer } = EC, { RenderPass } = RP, { UnrealBloomPass } = UB, { ShaderPass } = SP;
+  const { GammaCorrectionShader } = GCS, { CopyShader } = CS, { GLTFLoader } = GL, { DRACOLoader } = DR, { OrbitControls } = OC;
+
+  /* ------------------------------ CONFIG ------------------------------ */
+  const CONFIG = {
+    rimColor:'#c1faff', rimPower:2.4, nightLights:10, terrainDepth:0.33, terrainShade:1.3,
+    oceanGlint:0.45, oceanDeep:0.12, oceanFlow:3, oceanFlowSpeed:0.8, oceanFlowScale:2.1,
+    glowColor:'#3a6cff', glowIntensity:3.35, planetRadius:1.95, spin:0.03, initRotation:2.07,
+    tilt:0.37, autoRotate:0,
+    cloud1Height:1.005, cloud1Opacity:0.6, cloud1Spin:0.06,
+    cloud2Height:1.03, cloud2Opacity:0.5, cloud2Spin:0.14,
+    cloud3Height:1.075, cloud3Opacity:0.5, cloud3Spin:0.1,
+    bgColor:'#040a1e', flameColor:'#3a6cff', flameColor2:'#c1faff', flameAmt:0.15,
+    atmoColor:'#9fc4ff', atmoCount:320, atmoSize:22, atmoSpeed:0.8,
+    starColor:'#cfe0ff', starCount:1400, starSize:1.6, starFlicker:1,
+    markerColor:'#ffd27a', markerCount:60, markerSize:16, markerSpeed:0.5,
+  };
+  const LAYERS = { NONE:0, TORUS_SCENE:1, BLOOM_SCENE:2, ENTIRE_SCENE:3 };
+  /* The torus/bloom layers hold nothing in this scene, so their composers would only render black.
+     They are built (same chain as the original) but skipped per frame to save GPU. Set true to use them. */
+  const RENDER_AUX_PASSES = false;
+
+  const Lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const hexToVec3 = (hex) => { const n = parseInt(hex.replace('#',''), 16); return new THREE.Vector3(((n>>16)&255)/255, ((n>>8)&255)/255, (n&255)/255); };
+  const sample = (stops, p) => {
+    if (p <= stops[0].p) return stops[0].v;
+    for (let i = 0; i < stops.length - 1; i++) {
+      const a = stops[i], b = stops[i+1];
+      if (p <= b.p) { const t = (p - a.p) / (b.p - a.p); return Lerp(a.v, b.v, t*t*(3 - 2*t)); }
+    }
+    return stops[stops.length - 1].v;
+  };
+  const setLayer = (obj) => obj.traverse((o) => o.layers.set(LAYERS.ENTIRE_SCENE));
+
+  /* ------------------------ shared simplex noise ------------------------ */
+  const SNOISE = `
+vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
+float snoise(vec3 v){
+  const vec2 C = vec2(1.0/6.0, 1.0/3.0); const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+  vec3 i = floor(v + dot(v, C.yyy)); vec3 x0 = v - i + dot(i, C.xxx);
+  vec3 g = step(x0.yzx, x0.xyz); vec3 l = 1.0 - g;
+  vec3 i1 = min(g.xyz, l.zxy); vec3 i2 = max(g.xyz, l.zxy);
+  vec3 x1 = x0 - i1 + 1.0 * C.xxx; vec3 x2 = x0 - i2 + 2.0 * C.xxx; vec3 x3 = x0 - 1.0 + 3.0 * C.xxx;
+  i = mod(i, 289.0);
+  vec4 p = permute(permute(permute(i.z + vec4(0.0, i1.z, i2.z, 1.0)) + i.y + vec4(0.0, i1.y, i2.y, 1.0)) + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+  float n_ = 1.0/7.0; vec3 ns = n_ * D.wyz - D.xzx;
+  vec4 j = p - 49.0 * floor(p * ns.z *ns.z);
+  vec4 x_ = floor(j * ns.z); vec4 y_ = floor(j - 7.0 * x_);
+  vec4 x = x_ *ns.x + ns.yyyy; vec4 y = y_ *ns.x + ns.yyyy; vec4 h = 1.0 - abs(x) - abs(y);
+  vec4 b0 = vec4(x.xy, y.xy); vec4 b1 = vec4(x.zw, y.zw);
+  vec4 s0 = floor(b0)*2.0 + 1.0; vec4 s1 = floor(b1)*2.0 + 1.0; vec4 sh = -step(h, vec4(0.0));
+  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy; vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+  vec3 p0 = vec3(a0.xy,h.x); vec3 p1 = vec3(a0.zw,h.y); vec3 p2 = vec3(a1.xy,h.z); vec3 p3 = vec3(a1.zw,h.w);
+  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+  p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+  vec4 m = max(0.5 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0); m = m * m;
+  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+}`;
+  const injectMain = (src, line) => src.replace(/void\s+main\s*\(\s*\)\s*\{/, (m) => m + '\n' + line);
+
+  /* --------------------- renderer / scene / camera --------------------- */
+  const DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+  let W = window.innerWidth, H = window.innerHeight;
+  const renderer = new THREE.WebGL1Renderer({ canvas, antialias: true });
+  renderer.setPixelRatio(DPR);
+  renderer.setSize(W, H, false);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.VSMShadowMap;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x000000);
+
+  const camera = new THREE.PerspectiveCamera(40, W / H, 0.1, 200);
+  camera.position.set(0, 0, 8);
+  camera.layers.enable(LAYERS.TORUS_SCENE);
+  camera.layers.enable(LAYERS.BLOOM_SCENE);
+  camera.layers.enable(LAYERS.ENTIRE_SCENE);
+  scene.add(camera);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 1.8);
+  const sun = new THREE.DirectionalLight(0xffffff, 0.8);
+  sun.position.set(0, 10, 2);
+  ambient.layers.set(LAYERS.ENTIRE_SCENE); sun.layers.set(LAYERS.ENTIRE_SCENE);
+  scene.add(ambient, sun);
+
+  /* ------------------------------ final pass ------------------------------ */
+  const FinalPass = {
+    uniforms: {
+      iTime:{value:0}, tDiffuse:{value:null}, torusTexture:{value:null}, bloomTexture:{value:null}, haloTexture:{value:null},
+      uBg:{value:hexToVec3(CONFIG.bgColor)}, uFlameA:{value:hexToVec3(CONFIG.flameColor)},
+      uFlameB:{value:hexToVec3(CONFIG.flameColor2)}, uFlameAmt:{value:CONFIG.flameAmt},
+    },
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }`,
+    fragmentShader: `
+      uniform float iTime; uniform sampler2D tDiffuse; uniform sampler2D bloomTexture; uniform sampler2D torusTexture; uniform sampler2D haloTexture;
+      uniform vec3 uBg; uniform vec3 uFlameA; uniform vec3 uFlameB; uniform float uFlameAmt;
+      varying vec2 vUv;
+      vec3 warp3d(vec3 pos, float t){ float curv=.8,a=1.9,b=0.7; pos*=2.;
+        pos.x+=curv*sin(t+a*pos.y)+t*b; pos.y+=curv*cos(t+a*pos.x);
+        pos.y+=curv*sin(t+a*pos.z)+t*b; pos.z+=curv*cos(t+a*pos.y);
+        pos.z+=curv*sin(t+a*pos.x)+t*b; pos.x+=curv*cos(t+a*pos.z);
+        return 0.5+0.5*cos(pos.xyz+vec3(1,2,4)); }
+      void main(){
+        vec2 uv = 2.*vUv - 1.;
+        vec3 w = pow(warp3d(vec3(uv.x, sin(uv.y), uv.y), iTime*1.5), vec3(1.5));
+        vec3 flame = 1.5*uFlameA*w.x; flame*=w.y; flame += uFlameB*w.z;
+        flame *= smoothstep(0.25, 1., abs(uv.y));
+        float md = smoothstep(-0.7, 1., -uv.y*uv.x); flame *= md*md;
+        vec3 bg = uBg * (1.0 - 0.4 * length(uv));
+        vec3 halo = texture2D(haloTexture, vUv).xyz;
+        gl_FragColor = vec4(bg + flame*uFlameAmt + texture2D(bloomTexture, vUv).xyz + texture2D(torusTexture, vUv).xyz + texture2D(tDiffuse, vUv).xyz + halo, 1.);
+      }`,
+  };
+
+  /* ------------------------------ composers ------------------------------ */
+  const torusComposer = new EffectComposer(renderer);
+  torusComposer.renderToScreen = false;
+  torusComposer.addPass(new RenderPass(scene, camera));
+  torusComposer.addPass(new ShaderPass(GammaCorrectionShader));
+  torusComposer.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), 0.22, 0.2, 0));
+  torusComposer.addPass(new ShaderPass(CopyShader));
+
+  const bloomComposer = new EffectComposer(renderer);
+  bloomComposer.renderToScreen = false;
+  bloomComposer.addPass(new RenderPass(scene, camera));
+  bloomComposer.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), 0.5, 0.6, 0));
+  bloomComposer.addPass(new ShaderPass(GammaCorrectionShader));
+
+  const finalComposer = new EffectComposer(renderer);
+  finalComposer.addPass(new RenderPass(scene, camera));
+  const finalPass = new ShaderPass(FinalPass);
+  finalPass.uniforms.bloomTexture.value = bloomComposer.renderTarget1.texture;
+  finalPass.uniforms.torusTexture.value = torusComposer.renderTarget1.texture;
+  finalComposer.addPass(finalPass);
+
+  const composers = [torusComposer, bloomComposer, finalComposer];
+  composers.forEach((c) => { c.setPixelRatio(DPR); c.setSize(W, H); });
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.06; controls.enablePan = false;
+  controls.enabled = false;                       /* never capture pointer or scroll */
+  controls.autoRotate = true; controls.autoRotateSpeed = CONFIG.autoRotate;
+  controls.minDistance = 3.5; controls.maxDistance = 16; controls.target.set(0, 0, 0);
+
+  /* ----------------------------- scene hierarchy ----------------------------- */
+  const STOPS_X = [{p:0,v:0},{p:0.32,v:-3.1},{p:0.64,v:3.2},{p:1,v:0}];
+  const STOPS_Y = [{p:0,v:-4.5},{p:0.32,v:0.55},{p:0.64,v:0.45},{p:1,v:0.15}];
+  const STOPS_S = [{p:0,v:2.15},{p:0.32,v:1.0},{p:0.64,v:0.92},{p:1,v:1.12}];
+
+  const worldGroup = new THREE.Group();
+  worldGroup.position.set(STOPS_X[0].v, STOPS_Y[0].v, 0);
+  worldGroup.scale.setScalar(STOPS_S[0].v);
+  const planetGroup = new THREE.Group(); planetGroup.rotation.z = CONFIG.tilt;
+  const cloudGroup = new THREE.Group(); cloudGroup.rotation.z = CONFIG.tilt; cloudGroup.visible = false;
+  worldGroup.add(planetGroup, cloudGroup);
+  scene.add(worldGroup);
+
+  /* shared clocks */
+  let planetTime = 0, cloudTime = 0, starTime = 0, markerTime = 0, spinPhase = 0;
+  const res = new THREE.Vector2(W * DPR, H * DPR);
+
+  /* ------------------------------ atmosphere halo ------------------------------ */
+  const glowMesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(2, 2),
+    new THREE.ShaderMaterial({
+      transparent: true, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending,
+      uniforms: { uGlow:{value:hexToVec3(CONFIG.glowColor)}, uIntensity:{value:CONFIG.glowIntensity} },
+      vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+      fragmentShader: `
+        uniform vec3 uGlow; uniform float uIntensity; varying vec2 vUv;
+        void main(){
+          float d = length(vUv - 0.5) * 2.0;
+          float a = pow(clamp(1.0 - d, 0.0, 1.0), 2.2);
+          gl_FragColor = vec4(uGlow * a * uIntensity, a);
+        }`,
+    })
+  );
+  glowMesh.scale.setScalar(CONFIG.planetRadius * 2.3);
+  glowMesh.visible = false;                       /* shown once the planet exists */
+  setLayer(glowMesh); worldGroup.add(glowMesh);
+
+  /* --------------------------------- clouds --------------------------------- */
+  const cloudTex = new THREE.TextureLoader().load(PLANET_CLOUDS_PNG);
+  cloudTex.wrapS = cloudTex.wrapT = THREE.RepeatWrapping;
+  cloudTex.repeat.set(5, 5);
+  const cloudUTime = { value: 0 };
+  const cloudLayers = [
+    { h:CONFIG.cloud1Height, o:CONFIG.cloud1Opacity, s:CONFIG.cloud1Spin, ry:0.0, phase:0.0 },
+    { h:CONFIG.cloud2Height, o:CONFIG.cloud2Opacity, s:CONFIG.cloud2Spin, ry:2.2, phase:13.0 },
+    { h:CONFIG.cloud3Height, o:CONFIG.cloud3Opacity, s:CONFIG.cloud3Spin, ry:4.3, phase:27.0 },
+  ];
+  const cloudMeshes = cloudLayers.map((layer) => {
+    const mat = new THREE.MeshStandardMaterial({ map: cloudTex, transparent: true, depthWrite: false });
+    mat.onBeforeCompile = (shader) => {
+      shader.uniforms.uTime = cloudUTime;
+      shader.uniforms.noiseScale = { value: 20 };
+      shader.uniforms.uSpeedX = { value: 1 };
+      shader.uniforms.uSpeedY = { value: 2 };
+      shader.uniforms.uSpeedZ = { value: 2 };
+      shader.uniforms.uOpacity = { value: layer.o };
+      shader.uniforms.uPhase = { value: layer.phase };
+      shader.vertexShader = 'varying vec2 vCloudUv;\n' + injectMain(shader.vertexShader, 'vCloudUv = uv;');
+      shader.fragmentShader = `varying vec2 vCloudUv; uniform float uTime; uniform float noiseScale; uniform float uSpeedX; uniform float uSpeedY; uniform float uSpeedZ; uniform float uOpacity; uniform float uPhase;\n${SNOISE}\n` +
+        shader.fragmentShader.replace('#include <dithering_fragment>', `
+          #include <dithering_fragment>
+          gl_FragColor.rgb = vec3(1.0);
+          float cloudNoise = snoise(vec3(vCloudUv.x * noiseScale + uTime * uSpeedX + uPhase, vCloudUv.y * noiseScale - uTime * uSpeedY + uPhase, uTime * uSpeedZ + uPhase));
+          float cloudNdv = max(dot(normalize(vNormal), normalize(vViewPosition)), 0.0);
+          float cloudEdge = pow(1.0 - cloudNdv, 3.0);
+          float cloudMod = mix(cloudNoise, 1.0, cloudEdge);
+          float cloudNdl = dot(normalize(vNormal), normalize(vec3(-0.9, 0.18, 0.4)));
+          float cloudDay = 1.0 - smoothstep(0.30, -0.30, cloudNdl) * 0.9;
+          gl_FragColor.a *= cloudMod * uOpacity * cloudDay;
+        `);
+    };
+    const mesh = new THREE.Mesh(new THREE.SphereGeometry(CONFIG.planetRadius * layer.h, 64, 64), mat);
+    mesh.rotation.y = layer.ry; mesh.renderOrder = 2;
+    setLayer(mesh); cloudGroup.add(mesh);
+    return mesh;
+  });
+
+  /* ------------------------------ ambient motes ------------------------------ */
+  (function () {
+    const n = CONFIG.atmoCount, pos = new Float32Array(n*3), size = new Float32Array(n), seed = new Float32Array(n);
+    for (let i = 0; i < n; i++) {
+      pos[i*3] = Math.random()*2-1; pos[i*3+1] = Math.random()*2-1; pos[i*3+2] = Math.random()*2-1;
+      size[i] = CONFIG.atmoSize * (0.4 + Math.random()); seed[i] = Math.random() * 100;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setAttribute('size', new THREE.BufferAttribute(size, 1));
+    g.setAttribute('seed', new THREE.BufferAttribute(seed, 1));
+    const m = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
+      uniforms: { uTime:{value:0}, uRes:{value:res}, uColor:{value:hexToVec3(CONFIG.atmoColor)} },
+      vertexShader: `
+        attribute float size; attribute float seed; uniform float uTime; uniform vec2 uRes;
+        varying float vA;
+        vec3 warp(vec3 p, float t){ float c=0.9,a=1.9,b=0.02,s=0.05; p*=2.;
+          p.x+=c*sin(s*t+a*p.y)+t*b; p.y+=c*cos(s*t+a*p.x); p.y+=c*sin(s*t+a*p.z)+t*b;
+          p.z+=c*cos(s*t+a*p.y); p.z+=c*sin(s*t+a*p.x)+t*b; p.x+=c*cos(s*t+a*p.z);
+          return cos(p+vec3(1,2,4)); }
+        void main(){
+          vec3 v = position*4.0 + warp(position, uTime)*1.2;
+          vec4 mv = modelViewMatrix * vec4(v, 1.0);
+          float r = length(v); float farF = 1.0 - smoothstep(5.0, 6.5, r); float nearF = smoothstep(0.0, 0.5, -mv.z);
+          vA = farF * nearF;
+          gl_PointSize = size * uRes.y / 900.0 / -mv.z; gl_PointSize = max(gl_PointSize, 1.0);
+          gl_Position = projectionMatrix * mv;
+        }`,
+      fragmentShader: `
+        uniform vec3 uColor; varying float vA;
+        void main(){ vec2 p = gl_PointCoord - 0.5; float l = length(p); if (l > 0.5) discard;
+          float tex = smoothstep(0.5, 0.0, l); gl_FragColor = vec4(uColor * tex, tex * vA * 0.55); }`,
+    });
+    const pts = new THREE.Points(g, m);
+    pts.frustumCulled = false;
+    pts.onBeforeRender = () => {
+      const t = performance.now() / 1000;
+      m.uniforms.uTime.value = t * CONFIG.atmoSpeed * 8;
+      pts.position.copy(camera.position);
+      finalPass.uniforms.iTime.value = t;
+    };
+    setLayer(pts); scene.add(pts);
+  })();
+
+  /* -------------------------------- starfield -------------------------------- */
+  const starU = { uTime:{value:0}, uSize:{value:CONFIG.starSize}, uFlicker:{value:CONFIG.starFlicker}, uColor:{value:hexToVec3(CONFIG.starColor)}, uRes:{value:res} };
+  (function () {
+    const n = CONFIG.starCount, pos = new Float32Array(n*3), seed = new Float32Array(n), bright = new Float32Array(n);
+    for (let i = 0; i < n; i++) {
+      const u = Math.random()*2-1, th = Math.random()*Math.PI*2, r = Math.sqrt(1-u*u);
+      pos[i*3] = 90*r*Math.cos(th); pos[i*3+1] = 90*u; pos[i*3+2] = 90*r*Math.sin(th);
+      seed[i] = Math.random()*100; bright[i] = 0.35 + Math.random()*0.65;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setAttribute('seed', new THREE.BufferAttribute(seed, 1));
+    g.setAttribute('bright', new THREE.BufferAttribute(bright, 1));
+    const m = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, depthTest: true, blending: THREE.AdditiveBlending, uniforms: starU,
+      vertexShader: `
+        attribute float seed; attribute float bright;
+        uniform float uTime; uniform float uSize; uniform float uFlicker; uniform vec2 uRes;
+        varying float vTw;
+        void main(){
+          vec4 mv = modelViewMatrix * vec4(position, 1.0);
+          float tw = 0.6 + 0.4 * sin(uTime * uFlicker + seed);
+          vTw = bright * tw;
+          gl_PointSize = max(uSize * uRes.y / 900.0 * (90.0 / max(-mv.z, 1.0)), 1.0);
+          gl_Position = projectionMatrix * mv;
+        }`,
+      fragmentShader: `
+        uniform vec3 uColor; varying float vTw;
+        void main(){
+          vec2 p = gl_PointCoord - 0.5; float l = length(p); if (l > 0.5) discard;
+          float core = smoothstep(0.5, 0.0, l);
+          gl_FragColor = vec4(uColor, core * vTw);
+        }`,
+    });
+    const pts = new THREE.Points(g, m); pts.frustumCulled = false;
+    setLayer(pts); scene.add(pts);
+  })();
+
+  /* ------------------------------ land markers ------------------------------ */
+  const markerU = { uTime:{value:0}, uColor:{value:hexToVec3(CONFIG.markerColor)}, uSize:{value:CONFIG.markerSize}, uSpeed:{value:CONFIG.markerSpeed}, uRes:{value:res} };
+  function buildMarkers(mesh) {
+    try {
+      const geo = mesh.geometry, pos = geo.attributes.position, uv = geo.attributes.uv;
+      const img = mesh.material.map && mesh.material.map.image;
+      if (!pos || !uv || !img) return;
+      const MW = 1024, MH = Math.max(1, Math.round(MW * (img.height / img.width)));
+      const cv = document.createElement('canvas'); cv.width = MW; cv.height = MH;
+      const cx = cv.getContext('2d', { willReadFrequently: true });
+      cx.drawImage(img, 0, 0, MW, MH);
+      const px = cx.getImageData(0, 0, MW, MH).data;
+      const index = geo.index, tris = index ? index.count / 3 : pos.count / 3;
+      const vi = (t, k) => index ? index.getX(t*3 + k) : t*3 + k;
+      const cum = new Float32Array(tris); let total = 0;
+      const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), e1 = new THREE.Vector3(), e2 = new THREE.Vector3();
+      for (let t = 0; t < tris; t++) {
+        a.fromBufferAttribute(pos, vi(t,0)); b.fromBufferAttribute(pos, vi(t,1)); c.fromBufferAttribute(pos, vi(t,2));
+        e1.subVectors(b, a); e2.subVectors(c, a);
+        total += e1.cross(e2).length() * 0.5; cum[t] = total;
+      }
+      const out = [], seeds = []; let tries = 0;
+      while (seeds.length < CONFIG.markerCount && tries < 40000) {
+        tries++;
+        const r = Math.random() * total; let lo = 0, hi = tris - 1;
+        while (lo < hi) { const mid = (lo + hi) >> 1; if (cum[mid] < r) lo = mid + 1; else hi = mid; }
+        const i0 = vi(lo,0), i1 = vi(lo,1), i2 = vi(lo,2);
+        let u = Math.random(), v = Math.random(); if (u + v > 1) { u = 1 - u; v = 1 - v; }
+        const w = 1 - u - v;
+        let U = uv.getX(i0)*w + uv.getX(i1)*u + uv.getX(i2)*v;
+        let V = uv.getY(i0)*w + uv.getY(i1)*u + uv.getY(i2)*v;
+        U = ((U % 1) + 1) % 1; V = ((V % 1) + 1) % 1;
+        const o = ((Math.min(MH-1, (V*MH)|0)) * MW + Math.min(MW-1, (U*MW)|0)) * 4;
+        const cr = px[o], cg = px[o+1], cb = px[o+2];
+        if (cb > cr + 6 && cb > cg + 6) continue;      /* ocean: skip */
+        a.fromBufferAttribute(pos, i0); b.fromBufferAttribute(pos, i1); c.fromBufferAttribute(pos, i2);
+        const x = (a.x*w + b.x*u + c.x*v) * 1.012, y = (a.y*w + b.y*u + c.y*v) * 1.012, z = (a.z*w + b.z*u + c.z*v) * 1.012;
+        out.push(x, y, z); seeds.push(Math.random());
+      }
+      if (!seeds.length) return;
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(out, 3));
+      g.setAttribute('seed', new THREE.Float32BufferAttribute(seeds, 1));
+      const m = new THREE.ShaderMaterial({
+        transparent: true, depthWrite: false, depthTest: true, blending: THREE.AdditiveBlending, uniforms: markerU,
+        vertexShader: `
+          attribute float seed; uniform float uSize; uniform vec2 uRes;
+          varying float vSeed; varying float vFade;
+          void main(){
+            vSeed = seed;
+            vec4 mv = modelViewMatrix * vec4(position, 1.0);
+            vec3 vn = normalize(normalMatrix * normalize(position));
+            vec3 vd = normalize(-mv.xyz);
+            vFade = smoothstep(0.15, 0.5, dot(vn, vd));
+            gl_PointSize = max(uSize * uRes.y / 900.0 * (7.0 / max(-mv.z, 1.0)), 2.0);
+            gl_Position = projectionMatrix * mv;
+          }`,
+        fragmentShader: `
+          uniform vec3 uColor; uniform float uTime; uniform float uSpeed;
+          varying float vSeed; varying float vFade;
+          void main(){
+            if (vFade <= 0.001) discard;
+            vec2 p = gl_PointCoord - 0.5;
+            float d = length(p) * 2.0;
+            if (d > 1.0) discard;
+            float core = smoothstep(0.30, 0.0, d) * 1.2;
+            float ph = fract(uTime * uSpeed + vSeed);
+            float ring = smoothstep(0.07, 0.0, abs(d - ph)) * (1.0 - ph);
+            gl_FragColor = vec4(uColor, clamp(core + ring, 0.0, 1.0) * vFade);
+          }`,
+      });
+      const pts = new THREE.Points(g, m); pts.frustumCulled = false;
+      setLayer(pts); mesh.add(pts);
+    } catch (e) { console.warn('[hub] markers skipped', e); }
+  }
+
+  /* ---------------------------------- planet ---------------------------------- */
+  const planetU = {
+    time:{value:0}, noiseScale:{value:30}, speedX:{value:1.5}, speedY:{value:2.0}, speedZ:{value:2.5},
+    rimColor:{value:hexToVec3(CONFIG.rimColor)}, rimPower:{value:CONFIG.rimPower},
+    nightBlendTexture:{value:null}, nightLights:{value:CONFIG.nightLights},
+    terrainDepth:{value:CONFIG.terrainDepth}, terrainShade:{value:CONFIG.terrainShade},
+    oceanGlint:{value:CONFIG.oceanGlint}, oceanDeep:{value:CONFIG.oceanDeep},
+    oceanFlow:{value:CONFIG.oceanFlow}, oceanFlowSpeed:{value:CONFIG.oceanFlowSpeed}, oceanFlowScale:{value:CONFIG.oceanFlowScale},
+  };
+  const blackTex = new THREE.DataTexture(new Uint8Array([0,0,0,255]), 1, 1, THREE.RGBAFormat); blackTex.needsUpdate = true;
+  planetU.nightBlendTexture.value = blackTex;
+
+  let planetLoaded = false, entryStart = 0;
+  const draco = new DRACOLoader(); draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.5/');
+  const gltf = new GLTFLoader(); gltf.setDRACOLoader(draco);
+
+  function loadPlanet() {
+    gltf.load(PLANET_GLB, (g) => {
+      let mesh = null;
+      g.scene.traverse((o) => { if (o.isMesh && !mesh) mesh = o; });
+      if (!mesh) return;
+      mesh.geometry.computeBoundingSphere();
+      const bs = mesh.geometry.boundingSphere, sc = CONFIG.planetRadius / bs.radius;
+      mesh.removeFromParent();
+      mesh.scale.setScalar(sc); mesh.position.copy(bs.center).multiplyScalar(-sc); mesh.rotation.set(0,0,0);
+
+      const mat = mesh.material.clone();
+      mat.metalness = 0; mat.roughness = 1; mat.envMapIntensity = 0;
+      mat.extensions = { derivatives: true };       /* dFdx/dFdy on WebGL1 */
+      mat.onBeforeCompile = (shader) => {
+        Object.assign(shader.uniforms, planetU);
+        shader.vertexShader = 'varying vec2 vCustomUv;\n' + injectMain(shader.vertexShader, 'vCustomUv = uv;');
+        shader.fragmentShader = `varying vec2 vCustomUv;
+          uniform float time; uniform float noiseScale; uniform float speedX; uniform float speedY; uniform float speedZ;
+          uniform vec3 rimColor; uniform float rimPower; uniform sampler2D nightBlendTexture; uniform float nightLights;
+          uniform float terrainDepth; uniform float terrainShade; uniform float oceanGlint; uniform float oceanDeep;
+          uniform float oceanFlow; uniform float oceanFlowSpeed; uniform float oceanFlowScale;
+          ${SNOISE}\n` + shader.fragmentShader.replace('#include <dithering_fragment>', `
+          #include <dithering_fragment>
+          vec3 normalizedNormal = normalize(vNormal);
+          vec3 viewDir = normalize(vViewPosition);
+          float rim = 1.0 - max(dot(viewDir, normalizedNormal), 0.0);
+          rim = pow(rim, rimPower); rim = pow(rim, 1.5); rim *= 0.7;
+          vec3 currentColor = gl_FragColor.rgb;
+          float blueDom = currentColor.b - max(currentColor.r, currentColor.g);
+          float waterMask = clamp(smoothstep(-0.005, 0.03, blueDom), 0.0, 1.0);
+          float shimmer = snoise(vec3(vCustomUv.x * noiseScale + time * speedX, vCustomUv.y * noiseScale - time * speedY, time * speedZ));
+          gl_FragColor.rgb += waterMask * shimmer * 0.025;
+          float fT = time * oceanFlowSpeed * 4.0;
+          float fS = 4.0 * oceanFlowScale;
+          float warp = snoise(vec3(vCustomUv.x * fS - fT * 0.5, vCustomUv.y * fS + fT * 0.4, fT * 0.5));
+          float flow = snoise(vec3(vCustomUv.x * fS * 2.0 + fT * 0.6 + warp, vCustomUv.y * fS * 2.0 - fT * 0.5, fT * 0.7));
+          flow = warp * 0.6 + flow * 0.4;
+          gl_FragColor.rgb += waterMask * flow * 0.12 * oceanFlow;
+          gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(0.01, 0.06, 0.16), waterMask * oceanDeep);
+          vec3 finalColor = mix(gl_FragColor.rgb, rimColor, rim);
+          gl_FragColor = vec4(finalColor, 1.0);
+          vec3 surfPos = -vViewPosition;
+          float terrH = dot(texture2D(map, vCustomUv).rgb, vec3(0.299, 0.587, 0.114));
+          vec3 sigX = dFdx(surfPos), sigY = dFdy(surfPos);
+          vec3 vR1 = cross(sigY, normalizedNormal), vR2 = cross(normalizedNormal, sigX);
+          float fDet = dot(sigX, vR1);
+          vec3 vGrad = sign(fDet) * (dFdx(terrH) * vR1 + dFdy(terrH) * vR2);
+          vec3 bumpedNormal = normalize(abs(fDet) * normalizedNormal - terrainDepth * vGrad);
+          vec3 shadeNormal = mix(bumpedNormal, normalizedNormal, waterMask);
+          vec3 cityLights = texture2D(nightBlendTexture, vCustomUv).rgb * gl_FragColor.rgb * nightLights;
+          vec3 viewSunDir = normalize(vec3(-0.9, 0.18, 0.4));
+          float ndl = dot(normalizedNormal, viewSunDir);
+          float dayAmt = smoothstep(-0.05, 0.35, ndl);
+          float relief = dot(shadeNormal, viewSunDir) - ndl;
+          gl_FragColor.rgb *= clamp(1.0 + relief * terrainShade * dayAmt, 0.55, 1.6);
+          float nightFactor  = smoothstep(0.18, -0.30, ndl);
+          float lightsFactor = smoothstep(0.30, -0.35, ndl);
+          gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * 0.08, nightFactor);
+          gl_FragColor.rgb += cityLights * lightsFactor;
+          vec3 halfDir = normalize(viewSunDir + viewDir);
+          float ripple = snoise(vec3(vCustomUv * 240.0, time * 4.0));
+          float ndh = max(dot(normalizedNormal, halfDir) + ripple * 0.02, 0.0);
+          float glint = pow(ndh, 140.0);
+          gl_FragColor.rgb += glint * waterMask * dayAmt * oceanGlint * vec3(1.0, 0.97, 0.88);
+        `);
+      };
+      mesh.material = mat;
+      setLayer(mesh); planetGroup.add(mesh);
+      buildMarkers(mesh);
+      cloudGroup.visible = true; glowMesh.visible = true;
+      planetLoaded = true; entryStart = performance.now();
+    }, undefined, (err) => console.warn('[hub] planet.glb failed to load', err));
+  }
+
+  /* night-lights texture lives on the first mesh of planet-lights.glb */
+  gltf.load(PLANET_LIGHTS_GLB, (g) => {
+    let tex = null;
+    g.scene.traverse((o) => { if (!tex && o.isMesh && o.material && o.material.map) tex = o.material.map; });
+    if (tex) planetU.nightBlendTexture.value = tex;
+    loadPlanet();
+  }, undefined, (err) => { console.warn('[hub] planet-lights.glb failed to load', err); loadPlanet(); });
+
+  /* ---------------------------------- loop ---------------------------------- */
+  const ENTRY_DUR = 1.9, ENTRY_START_Y = -6.5;
+  let curP = 0, curX = STOPS_X[0].v, curY = STOPS_Y[0].v, curS = STOPS_S[0].v;
+  let raf = 0, last = performance.now(), running = false;
+
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    planetTime += dt / 12; cloudTime += dt / 20; starTime += dt; markerTime += dt;
+    planetU.time.value = planetTime; cloudUTime.value = cloudTime; starU.uTime.value = starTime; markerU.uTime.value = markerTime;
+
+    /* scroll storytelling */
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const pTarget = clamp(window.scrollY / maxScroll, 0, 1);
+    curP += (pTarget - curP) * Math.min(1, dt * 4.5);
+    const sideScale = clamp(window.innerWidth / 1200, 0.5, 1);
+    const k = Math.min(1, dt * 3.2);
+    curX += (sample(STOPS_X, curP) * sideScale - curX) * k;
+    curY += (sample(STOPS_Y, curP) - curY) * k;
+    curS += (sample(STOPS_S, curP) - curS) * k;
+
+    let entryY = 0;
+    if (planetLoaded && !reduce) {
+      const t = clamp((now - entryStart) / 1000 / ENTRY_DUR, 0, 1), e = 1 - Math.pow(1 - t, 3);
+      entryY = ENTRY_START_Y * (1 - e);
+    }
+    worldGroup.position.set(curX, curY + entryY, 0);
+    worldGroup.scale.setScalar(curS);
+
+    spinPhase += dt * CONFIG.spin;
+    planetGroup.rotation.y = CONFIG.initRotation + spinPhase + curP * Math.PI * 1.6;
+    cloudGroup.rotation.y = curP * Math.PI * 1.6;
+    cloudMeshes.forEach((m, i) => { m.rotation.y += dt * cloudLayers[i].s; });
+    glowMesh.quaternion.copy(camera.quaternion);
+
+    if (RENDER_AUX_PASSES) {
+      camera.layers.set(LAYERS.TORUS_SCENE); torusComposer.render();
+      camera.layers.set(LAYERS.BLOOM_SCENE); bloomComposer.render();
+    }
+    camera.layers.set(LAYERS.ENTIRE_SCENE); finalComposer.render();
+  }
+  function start() { if (running) return; running = true; last = performance.now(); raf = requestAnimationFrame(frame); }
+  function stop() { running = false; cancelAnimationFrame(raf); }
+
+  /* ---------------------------------- resize ---------------------------------- */
+  function onResize() {
+    W = window.innerWidth; H = window.innerHeight;
+    camera.aspect = W / H; camera.updateProjectionMatrix();
+    renderer.setPixelRatio(DPR); renderer.setSize(W, H, false);
+    composers.forEach((c) => { c.setPixelRatio(DPR); c.setSize(W, H); });
+    res.set(W * DPR, H * DPR);
+  }
+  window.addEventListener('resize', onResize);
+
+  /* effects toggle from the nav button */
+  const syncFx = () => { (window.__fxOn && window.__fxOn()) ? start() : stop(); };
+  window.addEventListener('hub-fx', syncFx);
+  syncFx();
 })();
 </script>
 </body>
