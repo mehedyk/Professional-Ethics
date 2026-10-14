@@ -1,8 +1,17 @@
 # Guide: adding videos, notes and more
 
-Everything the Study Hub shows comes from **one file: [`data/library.js`](data/library.js)**.
-Edit it, save, refresh the page. No build step.
+Everything the Study Hub shows comes from **one source file: `tools/library.src.js`**.
+It is encrypted into `data/library.enc.js`, which is what the site actually loads. After every edit, rebuild:
 
+```bash
+node tools/build-library.mjs YOUR_PASSWORD      # needs Node 18+
+```
+
+Then refresh the page. The current password is `ethics441`. To change it, rebuild with a new one.
+
+> Keep `tools/library.src.js` safe (it is in `.gitignore`, so it is **not** pushed to GitHub). If you lose it, decrypt-and-copy is not possible, so keep a backup.
+
+- [The password gate](#the-password-gate)
 - [How the library is organised](#how-the-library-is-organised)
 - [Add a YouTube video](#add-a-youtube-video)
 - [Add a PDF note](#add-a-pdf-note)
@@ -13,6 +22,14 @@ Edit it, save, refresh the page. No build step.
 - [Preview locally](#preview-locally)
 - [Troubleshooting](#troubleshooting)
 - [Before you make the repo public](#before-you-make-the-repo-public)
+
+## The password gate
+
+On load the page asks for a password. The library (titles, video links, file paths) is stored **encrypted** (AES-256-GCM, key from PBKDF2). The password is not in the code, so it cannot be read from View Source or DevTools. Typing the right one decrypts the library in the browser; a wrong one gives nothing.
+
+What this does **not** do: this is a static site, so there is no server to refuse a request. Anyone who already knows a direct URL (for example `files/notes/...pdf` or `decks/ethics/`) can still open it, and a weak password can be guessed offline. It keeps casual visitors and link-hunters out; it is not real access control. For that, use a private repo or an access-controlled host.
+
+Changing the password: `node tools/build-library.mjs NEW_PASSWORD`, then push `data/library.enc.js`.
 
 ## How the library is organised
 
@@ -31,7 +48,7 @@ Each category becomes a tile. Each item inside it becomes a card. The hero count
 
 ## Add a YouTube video
 
-1. Open `data/library.js` and find the `videos` category.
+1. Open `tools/library.src.js` and find the `videos` category.
 2. Add an item to its `items` array (mind the comma after the previous item):
 
 ```js
@@ -57,7 +74,7 @@ The video plays in a pop-up on the page when the card is clicked.
 ## Add a PDF note
 
 1. Copy the PDF into `files/notes/`. Use lowercase, hyphens, no spaces: `week-3-lesson-1-privacy.pdf`.
-2. Add an item to the `notes` category:
+2. Add an item to the `notes` category (then rebuild):
 
 ```js
 {
@@ -139,13 +156,18 @@ Double-clicking `index.html` also works for the page, library and PDFs. YouTube 
 
 | Problem | Fix |
 |---|---|
-| Nothing shows / a blank library | A typo in `library.js`. Open the browser console (F12); the line number is in the error. Usual culprit: a missing comma between items. |
+| Build script fails | A typo in `tools/library.src.js` (usually a missing comma).
+| Nothing shows / a blank library | The password step did not run. Use https:// or http://localhost (file:// works in most browsers but not all). A typo in `library.src.js` also shows here. Open the browser console (F12); the line number is in the error.  |
 | "Video unavailable" | The owner disabled embedding. Nothing to fix on your side; use the "Watch on YouTube" link in the pop-up. |
 | PDF does not open | Check the path and the exact filename (GitHub Pages is case-sensitive: `Notes.pdf` is not `notes.pdf`). |
 | New file not on the live site | Pages takes a minute or two after you push. Hard-refresh with Ctrl+Shift+R. |
 | Planet background missing | It needs WebGL and internet access to its CDN. Without them the hub falls back to a plain dark background and everything else still works. The **Effects** button turns it off on purpose. |
 
 GitHub rejects single files over 100 MB and warns above 50 MB. Compress big PDFs, or host large videos on YouTube and use the `youtube` field.
+
+## Light and dark mode
+
+Dark is the default. The sun/moon button in the top bar switches, and the choice is remembered in the browser.
 
 ## Before you make the repo public
 
