@@ -44,7 +44,7 @@
 
 ## The hub
 
-The front page is a dashboard over a WebGL planet scene. Everything on it comes from [`data/library.js`](data/library.js).
+The front page is a dashboard over a WebGL planet scene. It opens behind a password (the library is stored encrypted) and has dark and light modes. The content comes from `tools/library.src.js`, built into `data/library.enc.js`.
 
 | Tile | What it holds |
 |---|---|
@@ -54,7 +54,7 @@ The front page is a dashboard over a WebGL planet scene. Everything on it comes 
 | **Sir's Slides** | The lecturer's own PDFs. |
 | **Practice, Past Questions** | Placeholders marked "soon". |
 
-Search with <kbd>/</kbd>. The **Effects** button turns the 3D scene off. To add a video, note or deck, follow **[GUIDE.md](GUIDE.md)**.
+Search with <kbd>/</kbd>, filter by topic chips, tick the ✓ on a card to track progress, and step through videos with the arrows in the player. The **Effects** button turns the 3D scene off. To add a video, note or deck, follow **[GUIDE.md](GUIDE.md)**.
 
 ## What is this?
 
@@ -147,7 +147,7 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 
 ## Customise
 
-- **Hub content**: edit `data/library.js` (see the guide).
+- **Hub content**: edit `tools/library.src.js` and run `node tools/build-library.mjs PASSWORD` (see the guide).
 - **Deck colours** live in the `:root` block at the top of the `<style>` in `decks/ethics/index.html` (`--paper`, `--ink`, `--r` red, `--t` teal, `--g` green, `--a` ochre).
 - **Deck slides** are `<section class="slide">` blocks. Add the class `r` to anything that should reveal itself; order is automatic, or set `style="--i:3"` to control it.
 - **Entrance direction**: add `l`, `rt`, `z` or `d` next to `r` (from left, from right, zoom, from top).
@@ -161,7 +161,10 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 ├── index.html                  the hub (dashboard + planet scene)
 ├── GUIDE.md                    how to add videos, notes, decks
 ├── data/
-│   └── library.js              everything the hub lists
+│   └── library.enc.js          encrypted library the hub loads
+├── tools/
+│   ├── build-library.mjs       encrypts the library
+│   └── library.src.js          editable source (git-ignored)
 ├── decks/
 │   └── ethics/index.html       the 32-slide deck
 ├── files/
